@@ -33,7 +33,7 @@ export class UserEnquiryComponent {
     postal_code: new FormControl('', [Validators.required, Validators.pattern(/^\d{6}$/)]),
     country: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.pattern(/^\S+@\S+\.\S+$/)]),
-    phone_number: new FormControl('', [Validators.required, Validators.pattern(/^\d{10}$/)]),
+    phone_number: new FormControl('', [Validators.required, Validators.pattern(/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/)]),
     industry: new FormControl('', [Validators.required]),
     message: new FormControl('', [Validators.required]),
   })
@@ -45,14 +45,16 @@ export class UserEnquiryComponent {
   onSubmitUserEnquiry(){
     
     if (this.userEnquiryForm.valid) {
-      // const url = "http://localhost:3000/user/userEnquiry";
+      const url = "http://localhost:3000/user/userEnquiry";
       const data = this.userEnquiryForm.value;
       console.log(data);
-      // this.http.post(url, data).subscribe((res: any)=>{
-      //   console.log("Form Submitted Successfully");
-      // });
+      this.http.post(url, data).subscribe((res: any)=>{
+        console.log("Form Submitted Successfully");
+      });
     } else {
-      console.log("Form is not valid. Please check the fields.");
+      // console.log("Form is not valid. Please check the fields.");
+      this.userEnquiryForm.markAllAsTouched();
+      // console.log("Form is not valid. Please check the fields.");
     }
   }
 
