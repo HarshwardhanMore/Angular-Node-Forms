@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserEnquiryComponent } from './user-enquiry/user-enquiry.component';
 import { EnterpriseEnquiryComponent } from './enterprise-enquiry/enterprise-enquiry.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,9 @@ import { EnterpriseEnquiryComponent } from './enterprise-enquiry/enterprise-enqu
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -15,7 +15,7 @@
             
               <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
                   <h3 class="text-lg font-semibold text-gray-900 ">
-                    Let’s talk
+                    User Enquiry Form
                   </h3>
                   <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " data-modal-toggle="crud-modal">
                       <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -24,61 +24,107 @@
                       <span class="sr-only">Close modal</span>
                   </button>
               </div>
-  
-              <form class="p-4 md:p-5">
+
+              <form class="p-4 md:p-5" [formGroup]="userEnquiryForm" (submit)="onSubmitUserEnquiry()">
                   <div class="grid gap-4 mb-4 grid-cols-2">
                       <div class="">
-                          <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 ">First Name</label>
-                          <input type="text" name="first_name" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" placeholder="Type product name" required="">
+                          <label for="first_name" class="block mb-2 text-base font-semibold text-gray-900 ">First Name</label>
+                          <input type="text" name="first_name" id="first_name" formControlName="first_name" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5">
+                          <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['first_name']?.touched">
+                            <span *ngIf="userEnquiryForm.controls?.['first_name']?.errors?.['required']">This is required</span>
+                            <span *ngIf="userEnquiryForm.controls?.['first_name']?.errors?.['maxlength']">This is required</span>
+                          </div>
                       </div>
                       <div class="">
-                          <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 ">Last Name</label>
-                          <input   type="text" name="last_name" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" placeholder="$2999" required="">
+                          <label for="last_name" class="block mb-2 text-base font-semibold text-gray-900 ">Last Name</label>
+                          <input   type="text" name="last_name" id="last_name" formControlName="last_name" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" >
+                          <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['last_name']?.touched">
+                            <span *ngIf="userEnquiryForm.controls?.['last_name']?.errors?.['required']">This is required</span>
+                          </div>
                       </div>
                       <div class=" col-span-2">
-                          <label for="address_line" class="block mb-2 text-sm font-medium text-gray-900 ">Address Line</label>
-                          <input   type="text" name="address_line" id="address_line" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" placeholder="$2999" required="">
+                          <label for="address_line" class="block mb-2 text-base font-semibold text-gray-900 ">Address Line</label>
+                          <input type="text" name="address_line" id="address_line" formControlName="address_line" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                          <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['address_line']?.touched">
+                            <span *ngIf="userEnquiryForm.controls?.['address_line']?.errors?.['required']">This is required</span>
+                          </div>
                       </div>
                       <div class="">
-                          <label for="city" class="block mb-2 text-sm font-medium text-gray-900 ">City</label>
-                          <input   type="text" name="city" id="city" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" placeholder="$2999" required="">
+                          <label for="city" class="block mb-2 text-base font-semibold text-gray-900 ">City</label>
+                          <input type="text" name="city" id="city" formControlName="city" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                          <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['city']?.touched">
+                            <span *ngIf="userEnquiryForm.controls?.['city']?.errors?.['required']">This is required</span>
+                          </div>
                       </div>
                       <div class="">
-                          <label for="state" class="block mb-2 text-sm font-medium text-gray-900 ">State</label>
-                          <input   type="text" name="state" id="state" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" placeholder="$2999" required="">
+                          <label for="state" class="block mb-2 text-base font-semibold text-gray-900 ">State</label>
+                          <input type="text" name="state" id="state" formControlName="state" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                          <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['state']?.touched">
+                            <span *ngIf="userEnquiryForm.controls?.['state']?.errors?.['required']">This is required</span>
+                          </div>
                       </div>
                       <div class="">
-                          <label for="postal_code" class="block mb-2 text-sm font-medium text-gray-900 ">Postal Code</label>
-                          <input   type="number" name="postal_code" id="postal_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" placeholder="$2999" required="">
+                          <label for="postal_code" class="block mb-2 text-base font-semibold text-gray-900 ">Postal Code</label>
+                          <input type="number" name="postal_code" formControlName="postal_code" id="postal_code" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                          <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['postal_code']?.touched">
+                            <span *ngIf="userEnquiryForm.controls?.['postal_code']?.errors?.['required']">This is required</span>
+                            <span *ngIf="userEnquiryForm.controls?.['postal_code']?.errors?.['pattern']">Invalid length of postal code</span>
+                          </div>
                       </div>
                       <div class="">
-                          <label for="country" class="block mb-2 text-sm font-medium text-gray-900 ">Country</label>
-                          <input   type="text" name="country" id="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" placeholder="$2999" required="">
+                          <label for="country" class="block mb-2 text-base font-semibold text-gray-900 ">Country</label>
+                          <input type="text" name="country" id="country" formControlName="country" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                          <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['country']?.touched">
+                            <span *ngIf="userEnquiryForm.controls?.['country']?.errors?.['required']">This is required</span>
+                          </div>
                       </div>
                       <div class="col-span-2">
-                          <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Email</label>
-                          <input   type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" placeholder="$2999" required="">
+                          <label for="email" class="block mb-2 text-base font-semibold text-gray-900 ">Email</label>
+                          <input type="text" name="email" id="email" formControlName="email" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                          <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.get('email')?.invalid && userEnquiryForm.get('email')?.touched">
+                            <span *ngIf="userEnquiryForm.get('email')?.errors?.['required']">Email is required</span>
+                            <span *ngIf="userEnquiryForm.get('email')?.errors?.['pattern']">Invalid email format</span>
+                          </div>
                       </div>
                       <div class="col-span-2">
-                          <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 ">Phone Number</label>
-                          <input   type="number" name="phone" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" placeholder="$2999" required="">
+                          <label for="phone_number" class="block mb-2 text-base font-semibold text-gray-900 ">Phone</label>
+                          <input type="number" name="phone_number" id="phone_number" formControlName="phone_number" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                          <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['phone_number']?.touched">
+                            <span *ngIf="userEnquiryForm.controls?.['phone_number']?.errors?.['required']">This is required</span>
+                            <span *ngIf="userEnquiryForm.controls?.['phone_number']?.errors?.['pattern']">Invalid length of phone</span>
+                          </div>
                       </div>
                       <div class="col-span-2">
-                          <label for="industry" class="block mb-2 text-sm font-medium text-gray-900 ">Industry</label>
-                          <input   type="text" name="industry" id="industry" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" placeholder="$2999" required="">
+                          <label for="industry" class="block mb-2 text-base font-semibold text-gray-900 ">Industry</label>
+                          <input type="text" name="industry" id="industry" formControlName="industry" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                          <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['industry']?.touched">
+                            <span *ngIf="userEnquiryForm.controls?.['industry']?.errors?.['required']">This is required</span>
+                          </div>
                       </div>
   
                       <div class="col-span-2">
-                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Message</label>
-                        <textarea   id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-black focus:border-black" placeholder="Write product description here"></textarea>                    
+                        <label for="message" class="block mb-2 text-base font-semibold text-gray-900">Brief Message for ProducTry</label>
+                        <input required id="message" name="message" formControlName="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-black focus:border-black"/>                    
+                        <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['message']?.touched">
+                            <span *ngIf="userEnquiryForm.controls?.['message']?.errors?.['required']">This is required</span>
+                        </div>
                       </div>
+                      <div class="flex items-start col-span-2">
+                          <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 text-black border-gray-300 rounded focus:ring-black ">
+                          <label for="link-checkbox" class=" flex items-start ms-2 text-base font-normal text-black ">By clicking the checkbox, you are indicating that you have read, understood, and agreed to our Terms and Conditions and Privacy Policy.
+                          </label>
+                          <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['address_line']?.touched">
+                            <span *ngIf="userEnquiryForm.controls?.['address_line']?.errors?.['required']">This is required</span>
+                          </div>
+                      </div>
+  
   
   
   
                   </div>
-                  <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
-                      <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                      Add new product
+                  <button type="submit" [disabled]="!userEnquiryForm.valid" class="w-full text-white flex items-center bg-black focus:ring-0 focus:outline-none font-medium rounded-lg text-sm p-3 text-center ">
+                      <!-- <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg> -->
+                      Submit Form
                   </button>
               </form>
           </div>
