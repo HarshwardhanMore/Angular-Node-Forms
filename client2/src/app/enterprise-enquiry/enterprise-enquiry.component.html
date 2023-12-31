@@ -1,1 +1,89 @@
-<p>enterprise-enquiry works!</p>
+
+<button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm px-5 py-2.5 text-center " type="button">
+    Enterprise Enquiry Form 
+  </button>
+  
+  <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative p-4 w-full max-w-lg max-h-full">
+          <div class=" relative bg-white rounded-lg shadow ">
+
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
+                    <h3 class="text-lg font-semibold text-gray-900 ">
+                        Enterprise Enquiry Form
+                    </h3>
+                    <button type="button" class="text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " data-modal-toggle="crud-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+
+              <form class="p-4 md:p-5" (ngSubmit)="saveEnterpriseEnquiry()">
+                  <div class="grid gap-4 mb-4 grid-cols-2">
+                      <div class="">
+                          <label for="first_name" class="block mb-2 text-sm text-gray-900 font-semibold">First Name</label>
+                          <input type="text" [(ngModel)]="first_name" name="first_name" id="first_name" class=" bg-transparent border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required="">
+                      </div>
+                      <div class="">
+                          <label for="last_name" class="block mb-2 text-sm font-semibold text-gray-900 ">Last Name</label>
+                          <input type="text" [(ngModel)]="last_name" name="last_name" id="last_name" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required="">
+                      </div>
+                      <div class=" col-span-2">
+                          <label for="address_line" class="block mb-2 text-sm font-semibold text-gray-900 ">Address Line</label>
+                          <input type="text" [(ngModel)]="address_line" name="address_line" id="address_line" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required="">
+                      </div>
+                      <div class="">
+                          <label for="city" class="block mb-2 text-sm font-semibold text-gray-900 ">City</label>
+                          <input type="text" [(ngModel)]="city" name="city" id="city" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required="">
+                      </div>
+                      <div class="">
+                          <label for="state" class="block mb-2 text-sm font-semibold text-gray-900 ">State</label>
+                          <input type="text" [(ngModel)]="state" name="state" id="state" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required="">
+                      </div>
+                      <div class="">
+                          <label for="postal_code" class="block mb-2 text-sm font-semibold text-gray-900 ">Postal Code</label>
+                          <input type="number" [(ngModel)]="postal_code" name="postal_code" id="postal_code" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required="">
+                      </div>
+                      <div class="">
+                          <label for="country" class="block mb-2 text-sm font-semibold text-gray-900 ">Country</label>
+                          <input type="text" [(ngModel)]="country" name="country" id="country" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required="">
+                      </div>
+                      <div class="col-span-2">
+                          <label for="phone_number" class="block mb-2 text-sm font-semibold text-gray-900 ">Phone </label>
+                          <input type="number" [(ngModel)]="phone_number" name="phone_number" id="phone_number" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required="">
+                      </div>
+                      <div class="col-span-2">
+                          <label for="business_email" class="block mb-2 text-sm font-semibold text-gray-900 ">Business Email ID</label>
+                          <input type="text" [(ngModel)]="business_email" name="business_email" id="business_email" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required="">
+                      </div>
+                      <div class="col-span-2">
+                          <label for="job_type" class="block mb-2 text-sm font-semibold text-gray-900 ">Your Job Title</label>
+                          <input type="text" [(ngModel)]="job_type" name="job_type" id="job_type" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required="">
+                      </div>
+                      <div class="col-span-2">
+                          <label for="enterprise_type" class="block mb-2 text-sm font-semibold text-gray-900 ">Name of the Enterprise</label>
+                          <input type="text" [(ngModel)]="enterprise_type" name="enterprise_type" id="enterprise_type" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required="">
+                      </div>
+                      <div class="col-span-2">
+                          <label for="enterprise_description" class="block mb-2 text-sm font-semibold text-gray-900 ">Brief about your Enterprise (Company)</label>
+                          <input type="text" [(ngModel)]="enterprise_description" name="enterprise_description" id="enterprise_description" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required="">
+                      </div>
+  
+                      <div class="col-span-2">
+                        <label for="message" class="block mb-2 text-sm font-semibold text-gray-900">Message</label>
+                        <input id="message" [(ngModel)]="message" name="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-black focus:border-black" />                    
+                      </div>
+  
+  
+  
+  
+                  </div>
+                  <button type="submit" class="w-full text-white bg-black hover:bg-black-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-normal rounded-lg text-base p-3 text-center ">
+                    <!-- <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg> -->
+                    Submit Form
+                </button>
+              </form>
+          </div>
+      </div>
+  </div> 
