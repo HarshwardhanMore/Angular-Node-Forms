@@ -40,6 +40,7 @@ export class EnterpriseEnquiryComponent {
     enterprise_description: new FormControl('', [Validators.required]),
     website_link: new FormControl('', [Validators.required]),
     message: new FormControl('', [Validators.required]),
+    checkbox: new FormControl(false, [Validators.requiredTrue]),
   })
 
   constructor(private http: HttpClient, private EnterpriseEnquiryService: EnterpriseEnquiryService){
