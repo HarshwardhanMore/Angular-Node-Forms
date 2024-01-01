@@ -168,18 +168,23 @@
                         </div>
                     </div>
                     <div class="flex items-start col-span-2">
-                      <input id="checkbox" type="checkbox" formControlName="checkbox" class="cursor-pointer mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-0 focus:ring-transparent ">
-                      
+                        
+                      <input id="checkbox" type="checkbox" value="" class="mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-black ">
+                      <div class="flex flex-col items-start justify-start">
 
-                        <label for="checkbox" class="cursor-pointer flex items-start ms-2 text-base font-normal text-black ">By clicking the checkbox, you are indicating that you have read, understood, and agreed to our Terms and Conditions and Privacy Policy.
+                        <label for="checkbox" class=" flex items-start ms-2 text-base font-normal text-black ">By clicking the checkbox, you are indicating that you have read, understood, and agreed to our Terms and Conditions and Privacy Policy.
                         </label>
+                        <div class="text-red-400 text-xs ml-2" *ngIf="enterpriseEnquiryForm.controls?.['address_line']?.touched">
+                          <span *ngIf="enterpriseEnquiryForm.controls?.['address_line']?.errors?.['required']">This is required</span>
+                        </div>
+                      </div>
                     </div>
-
-                </div>
-                <button type="submit" class="w-full text-white flex items-center justify-center bg-black focus:ring-0 focus:outline-none font-medium rounded-lg text-sm p-3 text-center "
-                        [class.hidden]="!enterpriseEnquiryForm.controls['checkbox'].value">
-                        Submit Form
-                </button>
+  
+                  </div>
+                  <button type="submit" class="w-full text-white flex items-center justify-center bg-black focus:ring-0 focus:outline-none font-medium rounded-lg text-sm p-3 text-center ">
+                      <!-- <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg> -->
+                      Submit Form
+                  </button>
               </form>
           </div>
       </div>

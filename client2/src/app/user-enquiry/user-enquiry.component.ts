@@ -47,7 +47,6 @@ export class UserEnquiryComponent {
     phone_number: new FormControl('', [Validators.required, Validators.pattern(/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/)]),
     industry: new FormControl(''),
     message: new FormControl('', [Validators.required]),
-    checkbox: new FormControl(false, [Validators.requiredTrue]),
   })
 
   constructor(private http: HttpClient, private renderer: Renderer2, private userEnquiryService: UserEnquiryService){
