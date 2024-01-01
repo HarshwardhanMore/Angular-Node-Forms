@@ -47,6 +47,7 @@ export class UserEnquiryComponent {
     phone_number: new FormControl('', [Validators.required, Validators.pattern(/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/)]),
     industry: new FormControl(''),
     message: new FormControl('', [Validators.required]),
+    checkbox: new FormControl(false),
   })
 
   constructor(private http: HttpClient, private renderer: Renderer2, private userEnquiryService: UserEnquiryService){
@@ -69,6 +70,7 @@ export class UserEnquiryComponent {
       enterprise_description: '',
       website_link: '',
       message: '',
+      checkbox: false
      });
   }
 
@@ -76,10 +78,16 @@ export class UserEnquiryComponent {
     
     if (this.userEnquiryForm.valid) {
       const data = this.userEnquiryForm.value;
-      this.userEnquiryService.postData(data).subscribe((response:any) => {
+      this.userEnquiryService.postData(data).subscribe(
+        
+      (response:any) => {
         console.log('User Enquiry posted successfully:', response);
-      });
-      this.clearForm();
+        this.clearForm();
+      },
+      (error:any)=>{
+        console.log('error '+error.message);
+      }
+      );
     } else {
       this.userEnquiryForm.markAllAsTouched();
     }

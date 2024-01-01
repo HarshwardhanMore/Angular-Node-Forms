@@ -40,6 +40,7 @@ export class EnterpriseEnquiryComponent {
     enterprise_description: new FormControl('', [Validators.required]),
     website_link: new FormControl('', [Validators.required]),
     message: new FormControl('', [Validators.required]),
+    checkbox: new FormControl(false),
   })
 
   constructor(private http: HttpClient, private EnterpriseEnquiryService: EnterpriseEnquiryService){
@@ -61,6 +62,7 @@ export class EnterpriseEnquiryComponent {
       enterprise_description: '',
       website_link: '',
       message: '',
+      checkbox: false
      });
   }
 
@@ -69,8 +71,12 @@ export class EnterpriseEnquiryComponent {
       const data = this.enterpriseEnquiryForm.value;
       this.EnterpriseEnquiryService.postData(data).subscribe((response:any) => {
         console.log('Enterprise Enquiry posted successfully:', response);
+        this.clearForm();
+      },
+      (error:any)=>{
+        console.log('error '+error.message);
       });
-      this.clearForm();
+      console.log(data);
     } else {
       this.enterpriseEnquiryForm.markAllAsTouched();
     }
