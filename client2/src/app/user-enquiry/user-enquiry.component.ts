@@ -1,6 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Renderer2 } from '@angular/core';
+// import { Modal } from 'flowbite';
+
+// import { Modal } from 'flowbite';
+// import type { ModalOptions, ModalInterface } from 'flowbite';
+// import type { InstanceOptions } from 'flowbite';
+
+
 
 @Component({
   selector: 'app-user-enquiry',
@@ -33,26 +41,67 @@ export class UserEnquiryComponent {
     postal_code: new FormControl('', [Validators.required, Validators.pattern(/^\d{6}$/)]),
     country: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.pattern(/^\S+@\S+\.\S+$/)]),
-    phone_number: new FormControl('', [Validators.required, Validators.pattern(/^\d{10}$/)]),
+    // phone_number: new FormControl('', [Validators.required, Validators.pattern(/^\d{10}$/)]),
+    phone_number: new FormControl('', [Validators.required, Validators.pattern(/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/)]),
     industry: new FormControl('', [Validators.required]),
     message: new FormControl('', [Validators.required]),
   })
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private renderer: Renderer2){
 
   }
+
 
   onSubmitUserEnquiry(){
     
     if (this.userEnquiryForm.valid) {
-      // const url = "http://localhost:3000/user/userEnquiry";
+      const url = "http://localhost:3000/user/userEnquiry";
       const data = this.userEnquiryForm.value;
       console.log(data);
-      // this.http.post(url, data).subscribe((res: any)=>{
-      //   console.log("Form Submitted Successfully");
-      // });
+      this.http.post(url, data).subscribe((res: any)=>{
+        console.log("Form Submitted Successfully");
+      });
+
+
+
+
+
+
+      // const $modalElement: HTMLElement = document.getElementById('modalEl');
+
+      // const modalOptions: ModalOptions = {
+      //     placement: 'bottom-right',
+      //     backdrop: 'dynamic',
+      //     backdropClasses:
+      //         'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
+      //     closable: true,
+      //     onHide: () => {
+      //         console.log('modal is hidden');
+      //     },
+      //     onShow: () => {
+      //         console.log('modal is shown');
+      //     },
+      //     onToggle: () => {
+      //         console.log('modal has been toggled');
+      //     },
+      // };
+
+      // // instance options object
+      // const instanceOptions: InstanceOptions = {
+      //   id: 'modalEl',
+      //   override: true
+      // };
+
+      // const modal: ModalInterface = new Modal($modalElement, modalOptions, instanceOptions);
+
+      // modal.toggle();
+
+      
+      // modal = new Modal(document.getElementById('user-enquiry'));
+      // modal.toggle();
+
     } else {
-      console.log("Form is not valid. Please check the fields.");
+      this.userEnquiryForm.markAllAsTouched();
     }
   }
 

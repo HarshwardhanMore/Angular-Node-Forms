@@ -32,7 +32,8 @@ export class EnterpriseEnquiryComponent {
     state: new FormControl('', [Validators.required]),
     postal_code: new FormControl('', [Validators.required, Validators.pattern(/^\d{6}$/)]),
     country: new FormControl('', [Validators.required]),
-    phone_number: new FormControl('', [Validators.required, Validators.pattern(/^\d{10}$/)]),
+    // phone_number: new FormControl('', [Validators.required, Validators.pattern(/^\d{10}$/)]),
+    phone_number: new FormControl('', [Validators.required, Validators.pattern(/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/)]),
     business_email: new FormControl('', [Validators.required, Validators.pattern(/^\S+@\S+\.\S+$/)]),
     enterprise_name: new FormControl('', [Validators.required]),
     enterprise_description: new FormControl('', [Validators.required]),
@@ -41,7 +42,7 @@ export class EnterpriseEnquiryComponent {
   })
 
   constructor(private http: HttpClient){
-
+    
   }
 
   onSubmitEnterpriseEnquiry(){
@@ -54,6 +55,7 @@ export class EnterpriseEnquiryComponent {
         console.log("Form Submitted Successfully");
       });
     } else {
+      this.enterpriseEnquiryForm.markAllAsTouched();
       console.log("Form is not valid. Please check the fields.");
     }
 
