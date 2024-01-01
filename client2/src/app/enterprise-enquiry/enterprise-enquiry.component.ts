@@ -2,6 +2,7 @@ import { EnterpriseEnquiryService } from './../Services/EnterpriseEnquiry/enterp
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-enterprise-enquiry',
@@ -43,7 +44,7 @@ export class EnterpriseEnquiryComponent {
     checkbox: new FormControl(false),
   })
 
-  constructor(private http: HttpClient, private EnterpriseEnquiryService: EnterpriseEnquiryService){
+  constructor(private http: HttpClient, private EnterpriseEnquiryService: EnterpriseEnquiryService, private router: Router){
     
   }
 
@@ -72,6 +73,7 @@ export class EnterpriseEnquiryComponent {
       this.EnterpriseEnquiryService.postData(data).subscribe((response:any) => {
         console.log('Enterprise Enquiry posted successfully:', response);
         this.clearForm();
+        // this.router.navigate(['/']);
       },
       (error:any)=>{
         console.log('error '+error.message);
@@ -82,74 +84,4 @@ export class EnterpriseEnquiryComponent {
     }
   }
 
-
-//   onSubmitEnterpriseEnquiry(){
-//     if (this.enterpriseEnquiryForm.valid) {
-
-//       const url = "http://localhost:3000/user/enterpriseEnquiry";
-//       const data = this.enterpriseEnquiryForm.value;
-//       console.log(data);
-//       this.http.post(url, data).subscribe((res: any)=>{
-//         console.log("Form Submitted Successfully");
-//       });
-//     } else {
-//       this.enterpriseEnquiryForm.markAllAsTouched();
-//       console.log("Form is not valid. Please check the fields.");
-//     }
-
-// }
-
 }
-
-// import { HttpClient } from '@angular/common/http';
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-// @Component({
-//     selector: 'app-user-enquiry',
-//     templateUrl: './user-enquiry.component.html',
-//     styleUrls: ['./user-enquiry.component.css']
-// })
-// export class UserEnquiryComponent implements OnInit {
-//   title = 'client';
-//   apiUrl = 'http://localhost:3000/user/userEnquiry';
-
-//   userEnquiryForm: FormGroup = new FormGroup({
-
-//   });  // Add this line to declare the form
-
-//   constructor(private http: HttpClient, private fb: FormBuilder) {}
-
-//   ngOnInit(): void {
-//     // Initialize the form in the ngOnInit lifecycle hook
-//     this.userEnquiryForm = this.fb.group({
-//       first_name: ['', Validators.required],
-//       last_name: ['', Validators.required],
-//       address_line: ['', Validators.required],
-//       city: ['', Validators.required],
-//       state: ['', Validators.required],
-//       postal_code: [null, Validators.required],
-//       country: ['', Validators.required],
-//       email: ['', [Validators.required, Validators.email]],
-//       phone_number: [null, Validators.required],
-//       industry: ['', Validators.required],
-//       message: ['', Validators.required]
-//     });
-//   }
-
-//   onSubmitUserEnquiry(): void {
-//     const formData = this.userEnquiryForm.value;
-//     console.log(formData);
-
-//     // this.http.post(this.apiUrl, formData).subscribe(
-//     //   (response: any) => {
-//     //     console.log('Form data sent successfully', response);
-//     //     // Handle the response as needed
-//     //   },
-//     //   (error: any) => {
-//     //     console.error('Error sending form data', error);
-//     //     // Handle the error as needed
-//     //   }
-//     // );
-//   }
-// }

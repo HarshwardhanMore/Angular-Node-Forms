@@ -141,7 +141,7 @@
                       </div>
                       <div class="col-span-2">
                         <label for="message" class="block mb-2 text-base font-semibold text-gray-900">Brief Message for ProducTry <span class=" text-base font-semibold text-red-400">*</span></label>
-                        <input id="message" name="message" formControlName="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-black focus:border-black"/>                    
+                        <textarea id="message" name="message" formControlName="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-black focus:border-black"></textarea>               
                         <div *ngIf="
                             userEnquiryForm.get('message')?.touched &&
                             userEnquiryForm.get('message')?.hasError('required')
@@ -149,8 +149,8 @@
                           </div>
                       </div>
                       <div class="flex items-start col-span-2">
-                        <input id="checkbox" type="checkbox" formControlName="checkbox" class="cursor-pointer mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-0 focus:ring-transparent ">    
-                        <label for="checkbox" class=" flex items-start ms-2 text-base font-normal text-black cursor-pointer">By clicking the checkbox, you are indicating that you have read, understood, and agreed to our Terms and Conditions and Privacy Policy.
+                        <input id="user-enquiry-checkbox" type="checkbox" formControlName="checkbox" class="cursor-pointer mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-0 focus:ring-transparent ">    
+                        <label for="user-enquiry-checkbox" class=" flex items-start ms-2 text-base font-normal text-black cursor-pointer">By clicking the checkbox, you are indicating that you have read, understood, and agreed to our Terms and Conditions and Privacy Policy.
                         </label>
                       </div>
   

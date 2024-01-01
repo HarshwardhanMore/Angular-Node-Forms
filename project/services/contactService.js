@@ -20,7 +20,7 @@ exports.getAllContactDetails = async ()=>{
        const allContactDetails =  await Contact.findAll()
        return allContactDetails;
     } catch (error) {
-        throw new Error("Error adding contact details"+error.message);
+        throw new Error("Error fetching all contact details"+error.message);
     }
 }
 exports.getContactDetailsById = async (id)=>{
@@ -30,6 +30,6 @@ exports.getContactDetailsById = async (id)=>{
        const contactDetail =  await Contact.findOne({where: {id: id}});
        return contactDetail;
     } catch (error) {
-        throw new Error("Error adding contact details"+error.message);
+        throw new Error("Error fetching contact details"+error.message);
     }
 }

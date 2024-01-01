@@ -18,7 +18,7 @@ exports.getAllEnterpriseEnquiryDetails = async ()=>{
        const allEnterpriseEnquiryDetails =  await EnterpriseEnquiry.findAll()
        return allEnterpriseEnquiryDetails;
     } catch (error) {
-        throw new Error("Error adding user enquiry"+error.message);
+        throw new Error("Error fetching all enterprise enquiries"+error.message);
     }
 }
 exports.getEnterpriseEnquiryDetailsById = async (id)=>{
@@ -28,6 +28,6 @@ exports.getEnterpriseEnquiryDetailsById = async (id)=>{
        const enterpriseEnquiryDetails =  await EnterpriseEnquiry.findOne({where: {id: id}});
        return enterpriseEnquiryDetails;
     } catch (error) {
-        throw new Error("Error adding user enquiry"+error.message);
+        throw new Error("Error fetching enterprise enquiry"+error.message);
     }
 }

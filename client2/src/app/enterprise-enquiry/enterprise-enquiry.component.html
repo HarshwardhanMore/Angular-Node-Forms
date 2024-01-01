@@ -160,7 +160,7 @@
 
                     <div class="col-span-2">
                       <label for="message" class="block mb-2 text-base font-semibold text-gray-900">Brief Message for ProducTry <span class=" text-base font-semibold text-red-400">*</span></label>
-                      <input required id="message" name="message" formControlName="message" rows="4" class="cursor-pointer block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-black focus:border-black"/>                    
+                      <textarea required id="message" name="message" formControlName="message" rows="4" class="cursor-pointer block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-black focus:border-black"></textarea>                    
                       <div *ngIf="
                           enterpriseEnquiryForm.get('message')?.touched &&
                           enterpriseEnquiryForm.get('message')?.hasError('required')
@@ -168,8 +168,8 @@
                         </div>
                     </div>
                     <div class="flex items-start col-span-2">
-                      <input id="checkbox" type="checkbox" formControlName="checkbox" class="mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-0 focus:ring-transparent ">    
-                      <label for="checkbox" class="cursor-pointer flex items-start ms-2 text-base font-normal text-black ">By clicking the checkbox, you are indicating that you have read, understood, and agreed to our Terms and Conditions and Privacy Policy.
+                      <input id="enterprise-enquiry-checkbox" type="checkbox" formControlName="checkbox" class="mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-0 focus:ring-transparent ">    
+                      <label for="enterprise-enquiry-checkbox" class="cursor-pointer flex items-start ms-2 text-base font-normal text-black ">By clicking the checkbox, you are indicating that you have read, understood, and agreed to our Terms and Conditions and Privacy Policy.
                       </label>
                     </div>
 

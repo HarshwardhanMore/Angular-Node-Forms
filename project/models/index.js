@@ -20,6 +20,7 @@ db.sequelize = sequelize;
 db.contact = require('./contact')(sequelize, Sequelize);
 db.userEnquiry = require('./userEnquiry')(sequelize, Sequelize);
 db.enterpriseEnquiry = require('./enterpriseEnquiry')(sequelize, Sequelize);
+db.newsletter = require('./newsletter')(sequelize, Sequelize);
 
 
 
