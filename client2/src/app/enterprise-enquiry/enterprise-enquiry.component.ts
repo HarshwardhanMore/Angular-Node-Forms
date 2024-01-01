@@ -1,3 +1,4 @@
+import { EnterpriseEnquiryService } from './../Services/EnterpriseEnquiry/enterprise-enquiry.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -41,25 +42,56 @@ export class EnterpriseEnquiryComponent {
     message: new FormControl('', [Validators.required]),
   })
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private EnterpriseEnquiryService: EnterpriseEnquiryService){
     
   }
 
-  onSubmitEnterpriseEnquiry(){
-    if (this.enterpriseEnquiryForm.valid) {
+  clearForm() {
+    this.enterpriseEnquiryForm.reset({
+      first_name: '',
+      last_name: '',
+      address_line: '',
+      city: '',
+      state: '',
+      postal_code: '',
+      country: '',
+      phone_number: '',
+      business_email: '',
+      enterprise_name: '',
+      enterprise_description: '',
+      website_link: '',
+      message: '',
+     });
+  }
 
-      const url = "http://localhost:3000/user/enterpriseEnquiry";
+  onSubmitEnterpriseEnquiry() {
+    if (this.enterpriseEnquiryForm.valid) {
       const data = this.enterpriseEnquiryForm.value;
-      console.log(data);
-      this.http.post(url, data).subscribe((res: any)=>{
-        console.log("Form Submitted Successfully");
+      this.EnterpriseEnquiryService.postData(data).subscribe((response:any) => {
+        console.log('Enterprise Enquiry posted successfully:', response);
       });
+      this.clearForm();
     } else {
       this.enterpriseEnquiryForm.markAllAsTouched();
-      console.log("Form is not valid. Please check the fields.");
     }
+  }
 
-}
+
+//   onSubmitEnterpriseEnquiry(){
+//     if (this.enterpriseEnquiryForm.valid) {
+
+//       const url = "http://localhost:3000/user/enterpriseEnquiry";
+//       const data = this.enterpriseEnquiryForm.value;
+//       console.log(data);
+//       this.http.post(url, data).subscribe((res: any)=>{
+//         console.log("Form Submitted Successfully");
+//       });
+//     } else {
+//       this.enterpriseEnquiryForm.markAllAsTouched();
+//       console.log("Form is not valid. Please check the fields.");
+//     }
+
+// }
 
 }
 

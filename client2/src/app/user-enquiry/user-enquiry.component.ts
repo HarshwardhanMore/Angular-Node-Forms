@@ -1,3 +1,4 @@
+import { UserEnquiryService } from './../Services/UserEnquiry/user-enquiry.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -7,6 +8,7 @@ import { Renderer2 } from '@angular/core';
 // import { Modal } from 'flowbite';
 // import type { ModalOptions, ModalInterface } from 'flowbite';
 // import type { InstanceOptions } from 'flowbite';
+
 
 
 
@@ -43,67 +45,99 @@ export class UserEnquiryComponent {
     email: new FormControl('', [Validators.required, Validators.pattern(/^\S+@\S+\.\S+$/)]),
     // phone_number: new FormControl('', [Validators.required, Validators.pattern(/^\d{10}$/)]),
     phone_number: new FormControl('', [Validators.required, Validators.pattern(/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/)]),
-    industry: new FormControl('', [Validators.required]),
+    industry: new FormControl(''),
     message: new FormControl('', [Validators.required]),
   })
 
-  constructor(private http: HttpClient, private renderer: Renderer2){
+  constructor(private http: HttpClient, private renderer: Renderer2, private userEnquiryService: UserEnquiryService){
 
   }
 
+  
+  clearForm() {
+    this.userEnquiryForm.reset({
+      first_name: '',
+      last_name: '',
+      address_line: '',
+      city: '',
+      state: '',
+      postal_code: '',
+      country: '',
+      phone_number: '',
+      business_email: '',
+      enterprise_name: '',
+      enterprise_description: '',
+      website_link: '',
+      message: '',
+     });
+  }
 
-  onSubmitUserEnquiry(){
+  onSubmitUserEnquiry() {
     
     if (this.userEnquiryForm.valid) {
-      const url = "http://localhost:3000/user/userEnquiry";
       const data = this.userEnquiryForm.value;
-      console.log(data);
-      this.http.post(url, data).subscribe((res: any)=>{
-        console.log("Form Submitted Successfully");
+      this.userEnquiryService.postData(data).subscribe((response:any) => {
+        console.log('User Enquiry posted successfully:', response);
       });
-
-
-
-
-
-
-      // const $modalElement: HTMLElement = document.getElementById('modalEl');
-
-      // const modalOptions: ModalOptions = {
-      //     placement: 'bottom-right',
-      //     backdrop: 'dynamic',
-      //     backdropClasses:
-      //         'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
-      //     closable: true,
-      //     onHide: () => {
-      //         console.log('modal is hidden');
-      //     },
-      //     onShow: () => {
-      //         console.log('modal is shown');
-      //     },
-      //     onToggle: () => {
-      //         console.log('modal has been toggled');
-      //     },
-      // };
-
-      // // instance options object
-      // const instanceOptions: InstanceOptions = {
-      //   id: 'modalEl',
-      //   override: true
-      // };
-
-      // const modal: ModalInterface = new Modal($modalElement, modalOptions, instanceOptions);
-
-      // modal.toggle();
-
-      
-      // modal = new Modal(document.getElementById('user-enquiry'));
-      // modal.toggle();
-
+      this.clearForm();
     } else {
       this.userEnquiryForm.markAllAsTouched();
     }
   }
+
+
+  // onSubmitUserEnquiry(){
+    
+  //   if (this.userEnquiryForm.valid) {
+  //     const url = "http://localhost:3000/user/userEnquiry";
+  //     const data = this.userEnquiryForm.value;
+  //     console.log(data);
+  //     this.http.post(url, data).subscribe((res: any)=>{
+  //       console.log("Form Submitted Successfully");
+  //     });
+
+
+
+
+
+
+  //     // const $modalElement: HTMLElement = document.getElementById('modalEl');
+
+  //     // const modalOptions: ModalOptions = {
+  //     //     placement: 'bottom-right',
+  //     //     backdrop: 'dynamic',
+  //     //     backdropClasses:
+  //     //         'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
+  //     //     closable: true,
+  //     //     onHide: () => {
+  //     //         console.log('modal is hidden');
+  //     //     },
+  //     //     onShow: () => {
+  //     //         console.log('modal is shown');
+  //     //     },
+  //     //     onToggle: () => {
+  //     //         console.log('modal has been toggled');
+  //     //     },
+  //     // };
+
+  //     // // instance options object
+  //     // const instanceOptions: InstanceOptions = {
+  //     //   id: 'modalEl',
+  //     //   override: true
+  //     // };
+
+  //     // const modal: ModalInterface = new Modal($modalElement, modalOptions, instanceOptions);
+
+  //     // modal.toggle();
+
+      
+  //     // modal = new Modal(document.getElementById('user-enquiry'));
+  //     // modal.toggle();
+
+  //   } else {
+  //     this.userEnquiryForm.markAllAsTouched();
+  //   }
+  // }
 
 }
 

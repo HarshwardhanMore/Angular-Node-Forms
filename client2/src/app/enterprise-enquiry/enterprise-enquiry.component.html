@@ -28,7 +28,7 @@
               <form class="p-4 md:p-5" [formGroup]="enterpriseEnquiryForm" (submit)="onSubmitEnterpriseEnquiry()">
                   <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="">
-                      <label for="first_name" class="block mb-2 text-base font-semibold text-gray-900 ">First Name</label>
+                      <label for="first_name" class="block mb-2 text-base font-semibold text-gray-900 ">First Name <span class=" text-base font-semibold text-red-400">*</span></label> 
                       <input type="text" name="first_name" id="first_name" formControlName="first_name" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5">
                       <div *ngIf="
                           enterpriseEnquiryForm.get('first_name')?.touched &&
@@ -38,7 +38,7 @@
 
                   </div>
                   <div class="">
-                      <label for="last_name" class="block mb-2 text-base font-semibold text-gray-900 ">Last Name</label>
+                      <label for="last_name" class="block mb-2 text-base font-semibold text-gray-900 ">Last Name <span class=" text-base font-semibold text-red-400">*</span></label>
                       <input   type="text" name="last_name" id="last_name" formControlName="last_name" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" >
                       <div *ngIf="
                           enterpriseEnquiryForm.get('last_name')?.touched &&
@@ -47,7 +47,7 @@
                       </div>
                   </div>
                   <div class=" col-span-2">
-                      <label for="address_line" class="block mb-2 text-base font-semibold text-gray-900 ">Address Line</label>
+                      <label for="address_line" class="block mb-2 text-base font-semibold text-gray-900 ">Address Line <span class=" text-base font-semibold text-red-400">*</span></label>
                       <input type="text" name="address_line" id="address_line" formControlName="address_line" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                       <div *ngIf="
                           enterpriseEnquiryForm.get('address_line')?.touched &&
@@ -56,7 +56,7 @@
                       </div>
                   </div>
                   <div class="">
-                      <label for="city" class="block mb-2 text-base font-semibold text-gray-900 ">City</label>
+                      <label for="city" class="block mb-2 text-base font-semibold text-gray-900 ">City <span class=" text-base font-semibold text-red-400">*</span></label>
                       <input type="text" name="city" id="city" formControlName="city" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                       <div *ngIf="
                           enterpriseEnquiryForm.get('city')?.touched &&
@@ -65,7 +65,7 @@
                       </div>
                   </div>
                   <div class="">
-                      <label for="state" class="block mb-2 text-base font-semibold text-gray-900 ">State</label>
+                      <label for="state" class="block mb-2 text-base font-semibold text-gray-900 ">State <span class=" text-base font-semibold text-red-400">*</span></label>
                       <input type="text" name="state" id="state" formControlName="state" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                       <div *ngIf="
                           enterpriseEnquiryForm.get('state')?.touched &&
@@ -74,7 +74,7 @@
                       </div>
                   </div>
                   <div class="">
-                      <label for="postal_code" class="block mb-2 text-base font-semibold text-gray-900 ">Postal Code</label>
+                      <label for="postal_code" class="block mb-2 text-base font-semibold text-gray-900 ">Postal Code <span class=" text-base font-semibold text-red-400">*</span></label>
                       <input type="number" name="postal_code" formControlName="postal_code" id="postal_code" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                       <div>
                         <div *ngIf="
@@ -90,7 +90,7 @@
                       </div>
                   </div>
                   <div class="">
-                      <label for="country" class="block mb-2 text-base font-semibold text-gray-900 ">Country</label>
+                      <label for="country" class="block mb-2 text-base font-semibold text-gray-900 ">Country <span class=" text-base font-semibold text-red-400">*</span></label>
                       <input type="text" name="country" id="country" formControlName="country" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                       <div *ngIf="
                         enterpriseEnquiryForm.get('country')?.touched &&
@@ -99,7 +99,7 @@
                       </div>
                   </div>
                   <div class="col-span-2">
-                    <label for="phone_number" class="block mb-2 text-base font-semibold text-gray-900 ">Phone</label>
+                    <label for="phone_number" class="block mb-2 text-base font-semibold text-gray-900 ">Phone <span class=" text-base font-semibold text-red-400">*</span></label>
                     <input type="number" name="phone_number" id="phone_number" formControlName="phone_number" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                     <div>
                       <div *ngIf="
@@ -115,7 +115,7 @@
                     </div>
                   </div> 
                   <div class="col-span-2">
-                    <label for="business_email" class="block mb-2 text-base font-semibold text-gray-900 ">Email</label>
+                    <label for="business_email" class="block mb-2 text-base font-semibold text-gray-900 ">Email <span class=" text-base font-semibold text-red-400">*</span></label>
                     <input type="text" name="business_email" id="business_email" formControlName="business_email" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                     <div>
                       <div *ngIf="
@@ -131,7 +131,7 @@
                     </div>
                   </div>
                     <div class="col-span-2">
-                        <label for="enterprise_name" class="block mb-2 text-base font-semibold text-gray-900 ">Enterprise Name</label>
+                        <label for="enterprise_name" class="block mb-2 text-base font-semibold text-gray-900 ">Enterprise Name <span class=" text-base font-semibold text-red-400">*</span></label>
                         <input type="text" name="enterprise_name" id="enterprise_name" formControlName="enterprise_name" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                         <div *ngIf="
                           enterpriseEnquiryForm.get('enterprise_name')?.touched &&
@@ -140,7 +140,7 @@
                         </div>
                     </div>
                     <div class="col-span-2">
-                        <label for="enterprise_description" class="block mb-2 text-base font-semibold text-gray-900 ">Enterprise Description</label>
+                        <label for="enterprise_description" class="block mb-2 text-base font-semibold text-gray-900 ">Enterprise Description <span class=" text-base font-semibold text-red-400">*</span></label>
                         <input type="text" name="enterprise_description" id="enterprise_description" formControlName="enterprise_description" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                         <div *ngIf="
                           enterpriseEnquiryForm.get('enterprise_description')?.touched &&
@@ -149,7 +149,7 @@
                         </div>
                     </div>
                     <div class="col-span-2">
-                        <label for="website_link" class="block mb-2 text-base font-semibold text-gray-900 ">Website Link</label>
+                        <label for="website_link" class="block mb-2 text-base font-semibold text-gray-900 ">Website Link <span class=" text-base font-semibold text-red-400">*</span></label>
                         <input type="text" name="website_link" id="website_link" formControlName="website_link" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                         <div *ngIf="
                           enterpriseEnquiryForm.get('website_link')?.touched &&
@@ -159,7 +159,7 @@
                     </div>
 
                     <div class="col-span-2">
-                      <label for="message" class="block mb-2 text-base font-semibold text-gray-900">Brief Message for ProducTry</label>
+                      <label for="message" class="block mb-2 text-base font-semibold text-gray-900">Brief Message for ProducTry <span class=" text-base font-semibold text-red-400">*</span></label>
                       <input required id="message" name="message" formControlName="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-black focus:border-black"/>                    
                       <div *ngIf="
                           enterpriseEnquiryForm.get('message')?.touched &&
