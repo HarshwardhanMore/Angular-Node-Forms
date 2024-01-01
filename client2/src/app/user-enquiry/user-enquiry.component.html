@@ -3,13 +3,13 @@
 
 
 
-<button data-modal-target="user-enquiry-modal" data-modal-toggle="user-enquiry-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center " type="button">
+<button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center " type="button">
     User Enquiry Form 
   </button>
   
   
-  <div id="user-enquiry-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-      <div class="relative p-4 w-1/2 max-h-full">
+  <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative p-4 w-full max-w-lg max-h-full">
         
           <div class=" relative bg-white rounded-lg shadow ">
             
@@ -57,7 +57,7 @@
                           </div>
                       </div>
                       <div class="">
-                          <label for="state" class="block mb-2 text-   font-semibold text-gray-900 ">State</label>
+                          <label for="state" class="block mb-2 text-base font-semibold text-gray-900 ">State</label>
                           <input type="text" name="state" id="state" formControlName="state" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                           <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['state']?.touched">
                             <span *ngIf="userEnquiryForm.controls?.['state']?.errors?.['required']">This is required</span>
@@ -92,35 +92,6 @@
                           <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['phone_number']?.touched">
                             <span *ngIf="userEnquiryForm.controls?.['phone_number']?.errors?.['required']">This is required</span>
                             <span *ngIf="userEnquiryForm.controls?.['phone_number']?.errors?.['pattern']">Invalid length of phone</span>
-                            <!-- <span *ngIf="
-                              registerForm.get('contact').touched &&
-                              registerForm.get('contact').hasError('pattern')
-                            " class="ml-2 text-red-400 text-xs">Invalid contact number.
-                            </span> -->
-
-                            <!-- 
-
-                              <span *ngIf="
-                                registerForm.get('contact').touched &&
-                                registerForm.get('contact').hasError('required')
-                              " class="ml-2 text-red-400 text-xs">Contact number is required.</span>
-                            <span *ngIf="
-                                registerForm.get('contact').touched &&
-                                registerForm.get('contact').hasError('pattern')
-                              " class="ml-2 text-red-400 text-xs">Invalid contact number.</span>
-                            <span *ngI
-                            <span *ngIf="
-                                registerForm.get('contact').touched &&
-                                (registerForm.get('contact').hasError('minLength') ||
-                                  registerForm.get('contact').hasError('maxLength'))
-                              " class="ml-2 text-red-400 text-xs">Contact number must contain 10 digits.</span>
-                            <span *ngIf="
-                                registerForm.get('contact').touched &&
-                                (registerForm.get('contact').hasError('minLength') ||
-                                  registerForm.get('contact').hasError('maxLength'))
-                              " class="ml-2 text-red-400 text-xs">Contact number must contain 10 digits.</span>
-
-                             -->
                           </div>
                       </div>
                       <div class="col-span-2">
@@ -138,15 +109,12 @@
                             <span *ngIf="userEnquiryForm.controls?.['message']?.errors?.['required']">This is required</span>
                         </div>
                       </div>
-                      <div class="flex flex-col items-start col-span-2">
-                        <div class=" flex flex-row">
-
-                          <input id="link-checkbox" type="checkbox" value="" class=" mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-black ">
+                      <div class="flex items-start col-span-2">
+                          <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 text-black border-gray-300 rounded focus:ring-black ">
                           <label for="link-checkbox" class=" flex items-start ms-2 text-base font-normal text-black ">By clicking the checkbox, you are indicating that you have read, understood, and agreed to our Terms and Conditions and Privacy Policy.
                           </label>
-                        </div>
                           <div class="text-red-600 text-sm" *ngIf="userEnquiryForm.controls?.['address_line']?.touched">
-                            <div *ngIf="userEnquiryForm.controls?.['address_line']?.errors?.['required']">This is required</div>
+                            <span *ngIf="userEnquiryForm.controls?.['address_line']?.errors?.['required']">This is required</span>
                           </div>
                       </div>
   
@@ -154,7 +122,7 @@
   
   
                   </div>
-                  <button type="submit" class="w-full text-white flex items-center justify-center bg-black focus:ring-0 focus:outline-none font-medium rounded-lg text-sm p-3 text-center ">
+                  <button type="submit" [disabled]="!userEnquiryForm.valid" class="w-full text-white flex items-center bg-black focus:ring-0 focus:outline-none font-medium rounded-lg text-sm p-3 text-center ">
                       <!-- <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg> -->
                       Submit Form
                   </button>

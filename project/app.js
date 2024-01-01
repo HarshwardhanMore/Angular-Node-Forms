@@ -7,32 +7,19 @@ const db = require('./models');
 
 const app = express();
 
-
-const allowedOrigins = [
-    "http://localhost:4200"
-  ];
-app.use(cors({ origin: allowedOrigins, credentials: true }));
-  
-
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
-
 
 app.use(require('./routes'));
 
 
-// const corsOptions ={
-//     origin:'*', 
-//     credentials:true,            //access-control-allow-credentials:true
-//     optionSuccessStatus:200,
-//  }
+const corsOptions ={
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200,
+ }
  
-// app.use(cors(corsOptions));
-
+app.use(cors(corsOptions));
 
 // try {
 //     await sequelize.authenticate();
