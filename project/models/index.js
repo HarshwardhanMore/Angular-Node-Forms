@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 const config = require('../config');
 
-
 const sequelize = new Sequelize(
     config.DB_DATABASE,
     config.DB_USERNAME,
