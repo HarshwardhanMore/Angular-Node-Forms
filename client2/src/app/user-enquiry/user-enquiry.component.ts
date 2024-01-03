@@ -84,6 +84,7 @@ export class UserEnquiryComponent {
       (response:any) => {
         console.log('User Enquiry posted successfully:', response);
         this.clearForm();
+        document.getElementById('closeModel')?.click();
         // this.router.navigate(['/']);
       },
       (error:any)=>{
