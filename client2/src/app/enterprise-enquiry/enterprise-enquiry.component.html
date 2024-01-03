@@ -56,47 +56,39 @@
                       </div>
                   </div>
                   <div class="">
-                      <label for="city" class="block mb-2 text-base font-semibold text-gray-900 ">City <span class=" text-base font-semibold text-red-400">*</span></label>
-                      <input type="text" name="city" id="city" formControlName="city" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                      <div *ngIf="
-                          enterpriseEnquiryForm.get('city')?.touched &&
-                          enterpriseEnquiryForm.get('city')?.hasError('required')
-                        " class="ml-2 text-red-400 text-xs">This is required
-                      </div>
+                      <label for="country" class="block mb-2 text-base font-semibold text-gray-900 ">Country <span class=" text-base font-semibold text-red-400">*</span></label>
+                      <select name="country" id="country" formControlName="country"  class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                        <option *ngFor="let country of countries" [value]="country.isoCode">{{ country.name }}</option>
+                      </select>
                   </div>
                   <div class="">
                       <label for="state" class="block mb-2 text-base font-semibold text-gray-900 ">State <span class=" text-base font-semibold text-red-400">*</span></label>
-                      <input type="text" name="state" id="state" formControlName="state" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                      <div *ngIf="
-                          enterpriseEnquiryForm.get('state')?.touched &&
-                          enterpriseEnquiryForm.get('state')?.hasError('required')
-                        " class="ml-2 text-red-400 text-xs">This is required
-                      </div>
+                      <select name="state" id="state" formControlName="state"  class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                        <option *ngFor="let state of states" [value]="state.isoCode">{{ state.name }}</option>
+                      </select>
                   </div>
                   <div class="">
-                      <label for="postal_code" class="block mb-2 text-base font-semibold text-gray-900 ">Postal Code <span class=" text-base font-semibold text-red-400">*</span></label>
-                      <input type="number" name="postal_code" formControlName="postal_code" id="postal_code" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                      <div>
-                        <div *ngIf="
-                          enterpriseEnquiryForm.get('postal_code')?.touched &&
-                          enterpriseEnquiryForm.get('postal_code')?.hasError('required')
-                          " class="ml-2 text-red-400 text-xs">This is required
-                        </div>
-                        <div *ngIf="
-                          enterpriseEnquiryForm.get('postal_code')?.touched &&
-                          enterpriseEnquiryForm.get('postal_code')?.hasError('pattern')
-                          " class="ml-2 text-red-400 text-xs">Invalid format
-                        </div>
-                      </div>
+                      <label for="city" class="block mb-2 text-base font-semibold text-gray-900 ">City <span class=" text-base font-semibold text-red-400">*</span></label>
+                      <select name="city" id="city" formControlName="city"  class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                        <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+                      </select>
                   </div>
+                  
                   <div class="">
-                      <label for="country" class="block mb-2 text-base font-semibold text-gray-900 ">Country <span class=" text-base font-semibold text-red-400">*</span></label>
-                      <input type="text" name="country" id="country" formControlName="country" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                    <label for="postal_code" class="block mb-2 text-base font-semibold text-gray-900 ">Postal Code <span class=" text-base font-semibold text-red-400">*</span></label>
+                    <input type="number" name="postal_code" formControlName="postal_code" id="postal_code" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                    <div>
                       <div *ngIf="
-                        enterpriseEnquiryForm.get('country')?.touched &&
-                        enterpriseEnquiryForm.get('country')?.hasError('required')
+                        enterpriseEnquiryForm.get('postal_code')?.touched &&
+                        enterpriseEnquiryForm.get('postal_code')?.hasError('required')
                         " class="ml-2 text-red-400 text-xs">This is required
                       </div>
+                      <div *ngIf="
+                        enterpriseEnquiryForm.get('postal_code')?.touched &&
+                        enterpriseEnquiryForm.get('postal_code')?.hasError('pattern')
+                        " class="ml-2 text-red-400 text-xs">Invalid format
+                      </div>
+                    </div>
                   </div>
                   <div class="col-span-2">
                     <label for="phone_number" class="block mb-2 text-base font-semibold text-gray-900 ">Phone <span class=" text-base font-semibold text-red-400">*</span></label>

@@ -1,8 +1,11 @@
 import { EnterpriseEnquiryService } from './../Services/EnterpriseEnquiry/enterprise-enquiry.service';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { Country, State, City }  from 'country-state-city';
+
 
 @Component({
   selector: 'app-enterprise-enquiry',
@@ -10,7 +13,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./enterprise-enquiry.component.css']
 })
 
-export class EnterpriseEnquiryComponent {
+export class EnterpriseEnquiryComponent implements OnInit {
+
+
+
 
   enterpriseEnquiryObj:any = {
     first_name: '',
@@ -43,6 +49,31 @@ export class EnterpriseEnquiryComponent {
     message: new FormControl('', [Validators.required]),
     checkbox: new FormControl(false),
   })
+
+  
+  countries = Country.getAllCountries();
+  states: any[] = [];
+  cities: any[] = [];
+
+  
+
+  ngOnInit() {
+    const countryControl = this.enterpriseEnquiryForm.get('country');
+    if (countryControl) {
+      countryControl.valueChanges.subscribe((selectedCountry) => {
+        this.states = State.getStatesOfCountry(selectedCountry);
+        
+        const stateControl = this.enterpriseEnquiryForm.get('state');
+        if (countryControl && stateControl) {
+          stateControl.valueChanges.subscribe((selectedState) => {
+            this.cities = City.getCitiesOfState(selectedCountry, selectedState);
+          });
+        }
+      });
+    }
+    
+  }
+  
 
   constructor(private http: HttpClient, private EnterpriseEnquiryService: EnterpriseEnquiryService, private router: Router){
     
