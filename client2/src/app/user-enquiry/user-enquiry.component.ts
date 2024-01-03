@@ -1,6 +1,6 @@
 import { UserEnquiryService } from './../Services/UserEnquiry/user-enquiry.service';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 // import type { ModalOptions, ModalInterface } from 'flowbite';
 // import type { InstanceOptions } from 'flowbite';
 
+import { Country, State, City }  from 'country-state-city';
 
 
 
@@ -19,7 +20,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-enquiry.component.css']
 })
 
-export class UserEnquiryComponent {
+export class UserEnquiryComponent implements OnInit{
 
   userEnquiryObj:any = {
     first_name: '',
@@ -50,6 +51,43 @@ export class UserEnquiryComponent {
     message: new FormControl('', [Validators.required]),
     checkbox: new FormControl(false),
   })
+
+  countries = Country.getAllCountries();
+  // states = State.getAllStates();
+  states: any[] = [];
+  cities: any[] = [];
+
+
+
+  stateDisabled:Boolean = true;
+  cityDisabled:Boolean = true;
+
+  ngOnInit() {
+    const countryControl = this.userEnquiryForm.get('country');
+    if (countryControl) {
+      countryControl.valueChanges.subscribe((selectedCountry) => {
+        this.states = State.getStatesOfCountry(selectedCountry);
+        this.stateDisabled = false;
+        this.userEnquiryForm.get('state')?.setValue('');
+        this.userEnquiryForm.get('city')?.setValue('');
+        
+        const stateControl = this.userEnquiryForm.get('state');
+        if (countryControl && stateControl) {
+          stateControl.valueChanges.subscribe((selectedState) => {
+            this.cities = City.getCitiesOfState(selectedCountry, selectedState);
+            this.cityDisabled = false;
+            this.userEnquiryForm.get('city')?.setValue('');
+          });
+        }
+      });
+    }
+    
+  }
+  
+
+
+
+
 
   constructor(private http: HttpClient, private renderer: Renderer2, private userEnquiryService: UserEnquiryService, private router: Router){
 
@@ -84,7 +122,7 @@ export class UserEnquiryComponent {
       (response:any) => {
         console.log('User Enquiry posted successfully:', response);
         this.clearForm();
-        document.getElementById('closeModel')?.click();
+        document.getElementById('closeUserEnquiryModel')?.click();
         // this.router.navigate(['/']);
       },
       (error:any)=>{

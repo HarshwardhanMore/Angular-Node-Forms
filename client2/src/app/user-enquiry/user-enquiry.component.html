@@ -17,7 +17,7 @@
                   <h3 class=" text-xl font-semibold text-gray-900 ">
                     User Enquiry Form
                   </h3>
-                  <button id="closeModel" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " data-modal-toggle="user-enquiry">
+                  <button id="closeUserEnquiryModel" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " data-modal-toggle="user-enquiry">
                       <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                       </svg>
@@ -26,95 +26,91 @@
               </div>
 
               <form class="p-4 md:p-5" [formGroup]="userEnquiryForm" (submit)="onSubmitUserEnquiry()">
-                  <div class="grid gap-4 mb-4 grid-cols-2">
+                  <!-- <div class="grid gap-4 mb-4 grid-cols-2"> -->
+                    <div class="grid gap-4 mb-4 grid-cols-2">
                       <div class="">
-                          <label for="first_name" class="block mb-2 text-base font-semibold text-gray-900 ">First Name <span class=" text-base font-semibold text-red-400">*</span></label>
-                          <input type="text" [ngClass]="{'error-b':userEnquiryForm.get('first_name')?.hasError('required') && userEnquiryForm.get('first_name')?.touched}" name="first_name" id="first_name" formControlName="first_name" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5">
-                          <div *ngIf="
-                              userEnquiryForm.get('first_name')?.touched &&
-                              userEnquiryForm.get('first_name')?.hasError('required')
-                            " class="ml-2 text-red-400 text-xs">This is required
-                          </div>
+                        <label for="first_name" class="block mb-2 text-base font-semibold text-gray-900 ">First Name <span class=" text-base font-semibold text-red-400">*</span></label> 
+                        <input type="text" name="first_name" id="first_name" formControlName="first_name" [ngClass]="{'error-b':userEnquiryForm.get('first_name')?.hasError('required') && userEnquiryForm.get('first_name')?.touched}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5">
+                        <!-- <div *ngIf="
+                            userEnquiryForm.get('first_name')?.touched &&
+                            userEnquiryForm.get('first_name')?.hasError('required')
+                          " class="ml-2 text-red-400 text-xs">This is required
+                        </div> -->
+  
+                    </div>
+                    <div class="">
+                        <label for="last_name" class="block mb-2 text-base font-semibold text-gray-900 ">Last Name <span class=" text-base font-semibold text-red-400">*</span></label>
+                        <input   type="text" name="last_name" id="last_name" formControlName="last_name" [ngClass]="{'error-b':userEnquiryForm.get('last_name')?.hasError('required') && userEnquiryForm.get('last_name')?.touched}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" >
+                        <!-- <div *ngIf="
+                            userEnquiryForm.get('last_name')?.touched &&
+                            userEnquiryForm.get('last_name')?.hasError('required')
+                          " class="ml-2 text-red-400 text-xs">This is required
+                        </div> -->
+                    </div>
+                    <div class=" col-span-2">
+                        <label for="address_line" class="block mb-2 text-base font-semibold text-gray-900 ">Address Line <span class=" text-base font-semibold text-red-400">*</span></label>
+                        <input type="text" name="address_line" id="address_line" formControlName="address_line" [ngClass]="{'error-b':userEnquiryForm.get('address_line')?.hasError('required') && userEnquiryForm.get('address_line')?.touched}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                        <!-- <div *ngIf="
+                            userEnquiryForm.get('address_line')?.touched &&
+                            userEnquiryForm.get('address_line')?.hasError('required')
+                          " class="ml-2 text-red-400 text-xs">This is required
+                        </div> -->
+                    </div>
+                    <div class="">
+                        <label for="country" class="block mb-2 text-base font-semibold text-gray-900 ">Country</label>
+                        <select name="country" id="country" formControlName="country"  class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                          <option *ngFor="let country of countries" [value]="country.isoCode">{{ country.name }}</option>
+                        </select>
+                    </div>
+                    <div class="">
+                        <label for="state" class="block mb-2 text-base font-semibold text-gray-900 ">State</label>
+                        <select name="state" id="state" formControlName="state"  class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                          <option *ngFor="let state of states" [value]="state.isoCode">{{ state.name }}</option>
+                        </select>
+                    </div>
+                    <div class="">
+                        <label for="city" class="block mb-2 text-base font-semibold text-gray-900 ">City</label>
+                        <select name="city" id="city" formControlName="city"  class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                          <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+                        </select>
+                    </div>
+                    
+                    <div class="">
+                      <label for="postal_code" class="block mb-2 text-base font-semibold text-gray-900 ">Postal Code</label>
+                      <input [ngClass]="{'error-b':userEnquiryForm.get('postal_code')?.hasError('pattern')}" type="number" name="postal_code" formControlName="postal_code" id="postal_code" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                      <div>
+                        <div *ngIf="
+                          userEnquiryForm.get('postal_code')?.touched &&
+                          userEnquiryForm.get('postal_code')?.hasError('pattern')
+                          " class="ml-2 text-red-400 text-xs">Invalid format
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-span-2">
+                      <label for="email" class="block mb-2 text-base font-semibold text-gray-900 ">Email <span class=" text-base font-semibold text-red-400">*</span></label>
+                      <input type="text" [ngClass]="{'error-b':(userEnquiryForm.get('email')?.hasError('required') && userEnquiryForm.get('email')?.touched) || userEnquiryForm.get('email')?.hasError('pattern')}" name="email" id="email" formControlName="email" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                      <div>
+                        <div *ngIf="
+                          userEnquiryForm.get('email')?.touched &&
+                          userEnquiryForm.get('email')?.hasError('pattern')
+                          " class="ml-2 text-red-400 text-xs">Invalid format
+                        </div>
+                      </div>
+                  </div>
 
+                    <div class="col-span-2">
+                      <label for="phone_number" class="block mb-2 text-base font-semibold text-gray-900 ">Phone <span class=" text-base font-semibold text-red-400">*</span></label>
+                      <input type="number" name="phone_number" id="phone_number" formControlName="phone_number" [ngClass]="{'error-b':(userEnquiryForm.get('phone_number')?.hasError('required') && userEnquiryForm.get('phone_number')?.touched) || userEnquiryForm.get('phone_number')?.hasError('pattern')}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
+                      <div>
+                        <div *ngIf="
+                          userEnquiryForm.get('phone_number')?.touched &&
+                          userEnquiryForm.get('phone_number')?.hasError('pattern')
+                          " class="ml-2 text-red-400 text-xs">Invalid format
+                        </div>
                       </div>
-                      <div class="">
-                          <label for="last_name" class="block mb-2 text-base font-semibold text-gray-900 ">Last Name <span class=" text-base font-semibold text-red-400">*</span></label>
-                          <input   type="text" [ngClass]="{'error-b':userEnquiryForm.get('last_name')?.hasError('required') && userEnquiryForm.get('last_name')?.touched}" name="last_name" id="last_name" formControlName="last_name" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" >
-                          <div *ngIf="
-                              userEnquiryForm.get('last_name')?.touched &&
-                              userEnquiryForm.get('last_name')?.hasError('required')
-                            " class="ml-2 text-red-400 text-xs">This is required
-                          </div>
-                      </div>
-                      <div class=" col-span-2">
-                          <label for="address_line" class="block mb-2 text-base font-semibold text-gray-900 ">Address Line <span class=" text-base font-semibold text-red-400">*</span></label>
-                          <input type="text" [ngClass]="{'error-b':userEnquiryForm.get('address_line')?.hasError('required') && userEnquiryForm.get('address_line')?.touched}" name="address_line" id="address_line" formControlName="address_line" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                          <div *ngIf="
-                              userEnquiryForm.get('address_line')?.touched &&
-                              userEnquiryForm.get('address_line')?.hasError('required')
-                            " class="ml-2 text-red-400 text-xs">This is required
-                          </div>
-                      </div>
-                      <div class="">
-                          <label for="city" class="block mb-2 text-base font-semibold text-gray-900 ">City <span class=" text-base font-semibold text-red-400">*</span></label>
-                          <input type="text" [ngClass]="{'error-b':userEnquiryForm.get('city')?.hasError('required') && userEnquiryForm.get('city')?.touched}" name="city" id="city" formControlName="city" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                          <div *ngIf="
-                              userEnquiryForm.get('city')?.touched &&
-                              userEnquiryForm.get('city')?.hasError('required')
-                            " class="ml-2 text-red-400 text-xs">This is required
-                          </div>
-                      </div>
-                      <div class="">
-                          <label for="state" class="block mb-2 text-base font-semibold text-gray-900 ">State <span class=" text-base font-semibold text-red-400">*</span></label>
-                          <input type="text" [ngClass]="{'error-b':userEnquiryForm.get('state')?.hasError('required') && userEnquiryForm.get('state')?.touched}" name="state" id="state" formControlName="state" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                          <div *ngIf="
-                              userEnquiryForm.get('state')?.touched &&
-                              userEnquiryForm.get('state')?.hasError('required')
-                            " class="ml-2 text-red-400 text-xs">This is required
-                          </div>
-                      </div>
-                      <div class="">
-                          <label for="postal_code" class="block mb-2 text-base font-semibold text-gray-900 ">Postal Code <span class=" text-base font-semibold text-red-400">*</span></label>
-                          <input type="number" [ngClass]="{'error-b':userEnquiryForm.get('postal_code')?.hasError('required') && userEnquiryForm.get('postal_code')?.touched}" name="postal_code" formControlName="postal_code" id="postal_code" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                          <div>
-                            <div *ngIf="
-                              userEnquiryForm.get('postal_code')?.touched &&
-                              userEnquiryForm.get('postal_code')?.hasError('required')
-                              " class="ml-2 text-red-400 text-xs">This is required
-                            </div>
-                            <div *ngIf="
-                              userEnquiryForm.get('postal_code')?.touched &&
-                              userEnquiryForm.get('postal_code')?.hasError('pattern')
-                              " class="ml-2 text-red-400 text-xs">Invalid format
-                            </div>
-                          </div>
-                      </div>
-                      <div class="">
-                          <label for="country" class="block mb-2 text-base font-semibold text-gray-900 ">Country <span class=" text-base font-semibold text-red-400">*</span></label>
-                          <input type="text" [ngClass]="{'error-b':userEnquiryForm.get('country')?.hasError('required') && userEnquiryForm.get('country')?.touched}" name="country" id="country" formControlName="country" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                          <div *ngIf="
-                            userEnquiryForm.get('country')?.touched &&
-                            userEnquiryForm.get('country')?.hasError('required')
-                            " class="ml-2 text-red-400 text-xs">This is required
-                          </div>
-                      </div>
-                      <div class="col-span-2">
-                          <label for="email" class="block mb-2 text-base font-semibold text-gray-900 ">Email <span class=" text-base font-semibold text-red-400">*</span></label>
-                          <input type="text" [ngClass]="{'error-b':(userEnquiryForm.get('email')?.hasError('required') && userEnquiryForm.get('email')?.touched) || userEnquiryForm.get('email')?.hasError('pattern')}" name="email" id="email" formControlName="email" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                          <div>
-                            <div *ngIf="
-                              userEnquiryForm.get('email')?.touched &&
-                              userEnquiryForm.get('email')?.hasError('required')
-                              " class="ml-2 text-red-400 text-xs">This is required
-                            </div>
-                            <div *ngIf="
-                              userEnquiryForm.get('email')?.touched &&
-                              userEnquiryForm.get('email')?.hasError('pattern')
-                              " class="ml-2 text-red-400 text-xs">Invalid format
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-span-2">
+                    </div> 
+                      <!-- <div class="col-span-2">
                           <label for="phone_number" class="block mb-2 text-base font-semibold text-gray-900 ">Phone <span class=" text-base font-semibold text-red-400">*</span></label>
                           <input type="number" [ngClass]="{'error-b':(userEnquiryForm.get('phone_number')?.hasError('required') && userEnquiryForm.get('phone_number')?.touched) || userEnquiryForm.get('phone_number')?.hasError('pattern')}" name="phone_number" id="phone_number" formControlName="phone_number" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                           <div>
@@ -129,7 +125,7 @@
                               " class="ml-2 text-red-400 text-xs">Invalid format
                             </div>
                           </div>
-                      </div>
+                      </div> -->
                       <div class="col-span-2">
                           <label for="industry" class="block mb-2 text-base font-semibold text-gray-900 ">Industry</label>
                           <input type="text" name="industry" id="industry" formControlName="industry" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
@@ -142,11 +138,6 @@
                       <div class="col-span-2">
                         <label for="message" class="block mb-2 text-base font-semibold text-gray-900">Brief Message for ProducTry <span class=" text-base font-semibold text-red-400">*</span></label>
                         <textarea id="message" [ngClass]="{'error-b':userEnquiryForm.get('message')?.hasError('required') && userEnquiryForm.get('message')?.touched}" name="message" formControlName="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-black focus:border-black"></textarea>               
-                        <div *ngIf="
-                            userEnquiryForm.get('message')?.touched &&
-                            userEnquiryForm.get('message')?.hasError('required')
-                            " class="ml-2 text-red-400 text-xs">This is required
-                          </div>
                       </div>
                       <div class="flex items-start col-span-2">
                         <input id="user-enquiry-checkbox" type="checkbox" formControlName="checkbox" class="cursor-pointer mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-0 focus:ring-transparent ">    

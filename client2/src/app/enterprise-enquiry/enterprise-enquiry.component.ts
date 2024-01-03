@@ -52,21 +52,30 @@ export class EnterpriseEnquiryComponent implements OnInit {
 
   
   countries = Country.getAllCountries();
+  // states = State.getAllStates();
   states: any[] = [];
   cities: any[] = [];
 
-  
+
+
+  stateDisabled:Boolean = true;
+  cityDisabled:Boolean = true;
 
   ngOnInit() {
     const countryControl = this.enterpriseEnquiryForm.get('country');
     if (countryControl) {
       countryControl.valueChanges.subscribe((selectedCountry) => {
         this.states = State.getStatesOfCountry(selectedCountry);
+        this.stateDisabled = false;
+        this.enterpriseEnquiryForm.get('state')?.setValue('');
+        this.enterpriseEnquiryForm.get('city')?.setValue('');
         
         const stateControl = this.enterpriseEnquiryForm.get('state');
         if (countryControl && stateControl) {
           stateControl.valueChanges.subscribe((selectedState) => {
             this.cities = City.getCitiesOfState(selectedCountry, selectedState);
+            this.cityDisabled = false;
+            this.enterpriseEnquiryForm.get('city')?.setValue('');
           });
         }
       });
@@ -104,6 +113,7 @@ export class EnterpriseEnquiryComponent implements OnInit {
       this.EnterpriseEnquiryService.postData(data).subscribe((response:any) => {
         console.log('Enterprise Enquiry posted successfully:', response);
         this.clearForm();
+        document.getElementById('closeEnterpriseEnquiryModel')?.click();
         // this.router.navigate(['/']);
       },
       (error:any)=>{

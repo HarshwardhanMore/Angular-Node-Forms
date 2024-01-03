@@ -4,3 +4,7 @@
 
 
 .error-b{outline: 2px solid red;background-color: rgb(255, 244, 244);border-color: transparent !important;}
+
+.disable{
+    background-color: red;
+}
