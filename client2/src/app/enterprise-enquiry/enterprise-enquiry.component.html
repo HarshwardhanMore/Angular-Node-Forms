@@ -1,5 +1,3 @@
-<!-- <p>user-enquiry works!</p> -->
-
 
 
 
@@ -30,30 +28,15 @@
                     <div class="">
                       <label for="first_name" class="block mb-2 text-base font-semibold text-gray-900 ">First Name <span class=" text-base font-semibold text-red-400">*</span></label> 
                       <input type="text" name="first_name" id="first_name" formControlName="first_name" [ngClass]="{'error-b':enterpriseEnquiryForm.get('first_name')?.hasError('required') && enterpriseEnquiryForm.get('first_name')?.touched}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5">
-                      <!-- <div *ngIf="
-                          enterpriseEnquiryForm.get('first_name')?.touched &&
-                          enterpriseEnquiryForm.get('first_name')?.hasError('required')
-                        " class="ml-2 text-red-400 text-xs">This is required
-                      </div> -->
 
                   </div>
                   <div class="">
                       <label for="last_name" class="block mb-2 text-base font-semibold text-gray-900 ">Last Name <span class=" text-base font-semibold text-red-400">*</span></label>
                       <input   type="text" name="last_name" id="last_name" formControlName="last_name" [ngClass]="{'error-b':enterpriseEnquiryForm.get('last_name')?.hasError('required') && enterpriseEnquiryForm.get('last_name')?.touched}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" >
-                      <!-- <div *ngIf="
-                          enterpriseEnquiryForm.get('last_name')?.touched &&
-                          enterpriseEnquiryForm.get('last_name')?.hasError('required')
-                        " class="ml-2 text-red-400 text-xs">This is required
-                      </div> -->
                   </div>
                   <div  class=" col-span-2">
                       <label for="address_line" class="block mb-2 text-base font-semibold text-gray-900 ">Address Line <span class=" text-base font-semibold text-red-400">*</span></label>
                       <input type="text" name="address_line" id="address_line" formControlName="address_line" [ngClass]="{'error-b':enterpriseEnquiryForm.get('address_line')?.hasError('required') && enterpriseEnquiryForm.get('address_line')?.touched}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                      <!-- <div *ngIf="
-                          enterpriseEnquiryForm.get('address_line')?.touched &&
-                          enterpriseEnquiryForm.get('address_line')?.hasError('required')
-                        " class="ml-2 text-red-400 text-xs">This is required
-                      </div> -->
                   </div>
                   <div class="">
                       <label for="country" class="block mb-2 text-base font-semibold text-gray-900 ">Country</label>
@@ -100,11 +83,6 @@
                     <label for="business_email" class="block mb-2 text-base font-semibold text-gray-900 ">Business Email <span class=" text-base font-semibold text-red-400">*</span></label>
                     <input type="text" name="business_email" id="business_email" formControlName="business_email" [ngClass]="{'error-b':(enterpriseEnquiryForm.get('business_email')?.hasError('required') && enterpriseEnquiryForm.get('business_email')?.touched)  || enterpriseEnquiryForm.get('business_email')?.hasError('pattern')}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                     <div>
-                      <!-- <div *ngIf="
-                        enterpriseEnquiryForm.get('business_email')?.touched &&
-                        enterpriseEnquiryForm.get('business_email')?.hasError('required')
-                        " class="ml-2 text-red-400 text-xs">This is required
-                      </div> -->
                       <div *ngIf="
                         enterpriseEnquiryForm.get('business_email')?.touched &&
                         enterpriseEnquiryForm.get('business_email')?.hasError('pattern')
@@ -115,39 +93,21 @@
                     <div class="col-span-2">
                         <label for="enterprise_name" class="block mb-2 text-base font-semibold text-gray-900 ">Enterprise Name</label>
                         <input type="text" name="enterprise_name" id="enterprise_name" formControlName="enterprise_name" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                        <!-- <div *ngIf="
-                          enterpriseEnquiryForm.get('enterprise_name')?.touched &&
-                          enterpriseEnquiryForm.get('enterprise_name')?.hasError('required')
-                          " class="ml-2 text-red-400 text-xs">This is required
-                        </div> -->
+              
                     </div>
                     <div class="col-span-2">
                         <label for="enterprise_description" class="block mb-2 text-base font-semibold text-gray-900 ">Enterprise Description</label>
                         <input type="text" name="enterprise_description" id="enterprise_description" formControlName="enterprise_description" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                        <!-- <div *ngIf="
-                          enterpriseEnquiryForm.get('enterprise_description')?.touched &&
-                          enterpriseEnquiryForm.get('enterprise_description')?.hasError('required')
-                          " class="ml-2 text-red-400 text-xs">This is required
-                        </div> -->
                     </div>
                     <div class="col-span-2">
                         <label for="website_link" class="block mb-2 text-base font-semibold text-gray-900 ">Website Link</label>
                         <input type="text" name="website_link" id="website_link" formControlName="website_link" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                        <!-- <div *ngIf="
-                          enterpriseEnquiryForm.get('website_link')?.touched &&
-                          enterpriseEnquiryForm.get('website_link')?.hasError('required')
-                          " class="ml-2 text-red-400 text-xs">This is required
-                        </div> -->
                     </div>
 
                     <div class="col-span-2">
                       <label for="message" class="block mb-2 text-base font-semibold text-gray-900">Brief Message for ProducTry <span class=" text-base font-semibold text-red-400">*</span></label>
                       <textarea required id="message" name="message" formControlName="message" [ngClass]="{'error-b':enterpriseEnquiryForm.get('message')?.hasError('required') && enterpriseEnquiryForm.get('message')?.touched}" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-black focus:border-black"></textarea>                    
-                      <!-- <div *ngIf="
-                          enterpriseEnquiryForm.get('message')?.touched &&
-                          enterpriseEnquiryForm.get('message')?.hasError('required')
-                          " class="ml-2 text-red-400 text-xs">This is required
-                        </div> -->
+
                     </div>
                     <div class="flex items-start col-span-2">
                       <input id="enterprise-enquiry-checkbox" type="checkbox" formControlName="checkbox" class="mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-0 focus:ring-transparent ">    
