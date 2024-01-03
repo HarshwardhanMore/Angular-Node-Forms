@@ -9,10 +9,6 @@ const server = http.createServer(app);
 
 
 
-
-
-
-
 // Start the Express server
 server.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

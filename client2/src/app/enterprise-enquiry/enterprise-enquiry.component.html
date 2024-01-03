@@ -1,128 +1,378 @@
+<button
+  data-modal-target="enterprise-enquiry"
+  data-modal-toggle="enterprise-enquiry"
+  class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+  type="button"
+>
+  Enterprise Enquiry Form
+</button>
 
-
-
-<button data-modal-target="enterprise-enquiry" data-modal-toggle="enterprise-enquiry" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center " type="button">
-    Enterprise Enquiry Form 
-  </button>
-  
-  
-  <div id="enterprise-enquiry" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-      <div class="relative p-4 w-1/2 md:w-full max-h-full">
-        
-          <div class=" relative bg-white rounded-lg shadow">
-            
-              <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
-                  <h3 class="text-xl font-semibold text-gray-900 ">
-                    Enterprise Enquiry Form
-                  </h3>
-                  <button id="closeEnterpriseEnquiryModel" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " data-modal-toggle="enterprise-enquiry">
-                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                      </svg>
-                      <span class="sr-only">Close modal</span>
-                  </button>
-              </div>
-
-              <form class="p-4 md:p-5" [formGroup]="enterpriseEnquiryForm" (submit)="onSubmitEnterpriseEnquiry()">
-                  <div class="grid gap-4 mb-4 grid-cols-2">
-                    <div class="">
-                      <label for="first_name" class="block mb-2 text-base font-semibold text-gray-900 ">First Name <span class=" text-base font-semibold text-red-400">*</span></label> 
-                      <input type="text" name="first_name" id="first_name" formControlName="first_name" [ngClass]="{'error-b':enterpriseEnquiryForm.get('first_name')?.hasError('required') && enterpriseEnquiryForm.get('first_name')?.touched}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5">
-
-                  </div>
-                  <div class="">
-                      <label for="last_name" class="block mb-2 text-base font-semibold text-gray-900 ">Last Name <span class=" text-base font-semibold text-red-400">*</span></label>
-                      <input   type="text" name="last_name" id="last_name" formControlName="last_name" [ngClass]="{'error-b':enterpriseEnquiryForm.get('last_name')?.hasError('required') && enterpriseEnquiryForm.get('last_name')?.touched}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" >
-                  </div>
-                  <div  class=" col-span-2">
-                      <label for="address_line" class="block mb-2 text-base font-semibold text-gray-900 ">Address Line <span class=" text-base font-semibold text-red-400">*</span></label>
-                      <input type="text" name="address_line" id="address_line" formControlName="address_line" [ngClass]="{'error-b':enterpriseEnquiryForm.get('address_line')?.hasError('required') && enterpriseEnquiryForm.get('address_line')?.touched}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                  </div>
-                  <div class="">
-                      <label for="country" class="block mb-2 text-base font-semibold text-gray-900 ">Country</label>
-                      <select name="country" id="country" formControlName="country"  class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                        <option *ngFor="let country of countries" [value]="country.isoCode">{{ country.name }}</option>
-                      </select>
-                  </div>
-                  <div class="">
-                      <label for="state" class="block mb-2 text-base font-semibold text-gray-900 ">State</label>
-                      <select  name="state" id="state" formControlName="state"  class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                        <option *ngFor="let state of states" [value]="state.isoCode">{{ state.name }}</option>
-                      </select>
-                  </div>
-                  <div class="">
-                      <label for="city" class="block mb-2 text-base font-semibold text-gray-900 ">City</label>
-                      <select name="city" id="city" formControlName="city"  class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                        <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
-                      </select>
-                  </div>
-                  
-                  <div class="">
-                    <label for="postal_code" class="block mb-2 text-base font-semibold text-gray-900 ">Postal Code</label>
-                    <input [ngClass]="{'error-b':enterpriseEnquiryForm.get('postal_code')?.hasError('pattern')}" type="number" name="postal_code" formControlName="postal_code" id="postal_code" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                    <div>
-                      <div *ngIf="
-                        enterpriseEnquiryForm.get('postal_code')?.touched &&
-                        enterpriseEnquiryForm.get('postal_code')?.hasError('pattern')
-                        " class="ml-2 text-red-400 text-xs">Invalid format
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-span-2">
-                    <label for="phone_number" class="block mb-2 text-base font-semibold text-gray-900 ">Phone <span class=" text-base font-semibold text-red-400">*</span></label>
-                    <input type="number" name="phone_number" id="phone_number" formControlName="phone_number" [ngClass]="{'error-b':(enterpriseEnquiryForm.get('phone_number')?.hasError('required') && enterpriseEnquiryForm.get('phone_number')?.touched) || enterpriseEnquiryForm.get('phone_number')?.hasError('pattern')}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                    <div>
-                      <div *ngIf="
-                        enterpriseEnquiryForm.get('phone_number')?.touched &&
-                        enterpriseEnquiryForm.get('phone_number')?.hasError('pattern')
-                        " class="ml-2 text-red-400 text-xs">Invalid format
-                      </div>
-                    </div>
-                  </div> 
-                  <div class="col-span-2">
-                    <label for="business_email" class="block mb-2 text-base font-semibold text-gray-900 ">Business Email <span class=" text-base font-semibold text-red-400">*</span></label>
-                    <input type="text" name="business_email" id="business_email" formControlName="business_email" [ngClass]="{'error-b':(enterpriseEnquiryForm.get('business_email')?.hasError('required') && enterpriseEnquiryForm.get('business_email')?.touched)  || enterpriseEnquiryForm.get('business_email')?.hasError('pattern')}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                    <div>
-                      <div *ngIf="
-                        enterpriseEnquiryForm.get('business_email')?.touched &&
-                        enterpriseEnquiryForm.get('business_email')?.hasError('pattern')
-                        " class="ml-2 text-red-400 text-xs">Invalid format
-                      </div>
-                    </div>
-                  </div>
-                    <div class="col-span-2">
-                        <label for="enterprise_name" class="block mb-2 text-base font-semibold text-gray-900 ">Enterprise Name</label>
-                        <input type="text" name="enterprise_name" id="enterprise_name" formControlName="enterprise_name" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-              
-                    </div>
-                    <div class="col-span-2">
-                        <label for="enterprise_description" class="block mb-2 text-base font-semibold text-gray-900 ">Enterprise Description</label>
-                        <input type="text" name="enterprise_description" id="enterprise_description" formControlName="enterprise_description" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                    </div>
-                    <div class="col-span-2">
-                        <label for="website_link" class="block mb-2 text-base font-semibold text-gray-900 ">Website Link</label>
-                        <input type="text" name="website_link" id="website_link" formControlName="website_link" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
-                    </div>
-
-                    <div class="col-span-2">
-                      <label for="message" class="block mb-2 text-base font-semibold text-gray-900">Brief Message for ProducTry <span class=" text-base font-semibold text-red-400">*</span></label>
-                      <textarea required id="message" name="message" formControlName="message" [ngClass]="{'error-b':enterpriseEnquiryForm.get('message')?.hasError('required') && enterpriseEnquiryForm.get('message')?.touched}" rows="4" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-black focus:border-black"></textarea>                    
-
-                    </div>
-                    <div class="flex items-start col-span-2">
-                      <input id="enterprise-enquiry-checkbox" type="checkbox" formControlName="checkbox" class="mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-0 focus:ring-transparent ">    
-                      <label for="enterprise-enquiry-checkbox" class="cursor-pointer flex items-start ms-2 text-base font-normal text-black ">By clicking the checkbox, you are indicating that you have read, understood, and agreed to our Terms and Conditions and Privacy Policy.
-                      </label>
-                    </div>
-
-                </div>
-                <button type="submit" class="w-full text-white flex items-center justify-center bg-black focus:ring-0 focus:outline-none font-medium rounded-lg text-sm p-3 text-center "
-                  [class.hidden]="!enterpriseEnquiryForm.controls['checkbox'].value">
-                  Submit Form
-                </button>
-              </form>
-          </div>
+<div
+  id="enterprise-enquiry"
+  tabindex="-1"
+  aria-hidden="true"
+  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+>
+  <div class="relative p-4 w-1/2 md:w-full max-h-full">
+    <div class="relative bg-white rounded-lg shadow">
+      <div
+        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t"
+      >
+        <h3 class="text-xl font-semibold text-gray-900">
+          Enterprise Enquiry Form
+        </h3>
+        <button
+          id="closeEnterpriseEnquiryModel"
+          type="button"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+          data-modal-toggle="enterprise-enquiry"
+        >
+          <svg
+            class="w-3 h-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 14"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+            />
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
       </div>
-  </div> 
-  
-  
+
+      <form
+        class="p-4 md:p-5"
+        [formGroup]="enterpriseEnquiryForm"
+        (submit)="onSubmitEnterpriseEnquiry()"
+      >
+        <div class="grid gap-4 mb-4 grid-cols-2">
+          <div class="">
+            <label
+              for="first_name"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >First Name
+              <span class="text-base font-semibold text-red-400">*</span></label
+            >
+            <input
+              type="text"
+              name="first_name"
+              id="first_name"
+              formControlName="first_name"
+              [ngClass]="{
+                'error-b':
+                  enterpriseEnquiryForm
+                    .get('first_name')
+                    ?.hasError('required') &&
+                  enterpriseEnquiryForm.get('first_name')?.touched
+              }"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+            />
+          </div>
+          <div class="">
+            <label
+              for="last_name"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >Last Name
+              <span class="text-base font-semibold text-red-400">*</span></label
+            >
+            <input
+              type="text"
+              name="last_name"
+              id="last_name"
+              formControlName="last_name"
+              [ngClass]="{
+                'error-b':
+                  enterpriseEnquiryForm
+                    .get('last_name')
+                    ?.hasError('required') &&
+                  enterpriseEnquiryForm.get('last_name')?.touched
+              }"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+            />
+          </div>
+          <div class="col-span-2">
+            <label
+              for="address_line"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >Address Line
+              <span class="text-base font-semibold text-red-400">*</span></label
+            >
+            <input
+              type="text"
+              name="address_line"
+              id="address_line"
+              formControlName="address_line"
+              [ngClass]="{
+                'error-b':
+                  enterpriseEnquiryForm
+                    .get('address_line')
+                    ?.hasError('required') &&
+                  enterpriseEnquiryForm.get('address_line')?.touched
+              }"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+              required
+            />
+          </div>
+          <div class="">
+            <label
+              for="country"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >Country</label
+            >
+            <select
+              name="country"
+              id="country"
+              formControlName="country"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+              required
+            >
+              <option
+                *ngFor="let country of countries"
+                [value]="country.isoCode"
+              >
+                {{ country.name }}
+              </option>
+            </select>
+          </div>
+          <div class="">
+            <label
+              for="state"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >State</label
+            >
+            <select
+              name="state"
+              id="state"
+              formControlName="state"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+              required
+            >
+              <option *ngFor="let state of states" [value]="state.isoCode">
+                {{ state.name }}
+              </option>
+            </select>
+          </div>
+          <div class="">
+            <label
+              for="city"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >City</label
+            >
+            <select
+              name="city"
+              id="city"
+              formControlName="city"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+              required
+            >
+              <option *ngFor="let city of cities" [value]="city.name">
+                {{ city.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="">
+            <label
+              for="postal_code"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >Postal Code</label
+            >
+            <input
+              [ngClass]="{
+                'error-b': enterpriseEnquiryForm
+                  .get('postal_code')
+                  ?.hasError('pattern')
+              }"
+              type="number"
+              name="postal_code"
+              formControlName="postal_code"
+              id="postal_code"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+              required
+            />
+            <div>
+              <div
+                *ngIf="
+                  enterpriseEnquiryForm.get('postal_code')?.touched &&
+                  enterpriseEnquiryForm.get('postal_code')?.hasError('pattern')
+                "
+                class="ml-2 text-red-400 text-xs"
+              >
+                Invalid format
+              </div>
+            </div>
+          </div>
+          <div class="col-span-2">
+            <label
+              for="phone_number"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >Phone
+              <span class="text-base font-semibold text-red-400">*</span></label
+            >
+            <input
+              type="number"
+              name="phone_number"
+              id="phone_number"
+              formControlName="phone_number"
+              [ngClass]="{
+                'error-b':
+                  (enterpriseEnquiryForm
+                    .get('phone_number')
+                    ?.hasError('required') &&
+                    enterpriseEnquiryForm.get('phone_number')?.touched) ||
+                  enterpriseEnquiryForm.get('phone_number')?.hasError('pattern')
+              }"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+              required
+            />
+            <div>
+              <div
+                *ngIf="
+                  enterpriseEnquiryForm.get('phone_number')?.touched &&
+                  enterpriseEnquiryForm.get('phone_number')?.hasError('pattern')
+                "
+                class="ml-2 text-red-400 text-xs"
+              >
+                Invalid format
+              </div>
+            </div>
+          </div>
+          <div class="col-span-2">
+            <label
+              for="business_email"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >Business Email
+              <span class="text-base font-semibold text-red-400">*</span></label
+            >
+            <input
+              type="text"
+              name="business_email"
+              id="business_email"
+              formControlName="business_email"
+              [ngClass]="{
+                'error-b':
+                  (enterpriseEnquiryForm
+                    .get('business_email')
+                    ?.hasError('required') &&
+                    enterpriseEnquiryForm.get('business_email')?.touched) ||
+                  enterpriseEnquiryForm
+                    .get('business_email')
+                    ?.hasError('pattern')
+              }"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+              required
+            />
+            <div>
+              <div
+                *ngIf="
+                  enterpriseEnquiryForm.get('business_email')?.touched &&
+                  enterpriseEnquiryForm
+                    .get('business_email')
+                    ?.hasError('pattern')
+                "
+                class="ml-2 text-red-400 text-xs"
+              >
+                Invalid format
+              </div>
+            </div>
+          </div>
+          <div class="col-span-2">
+            <label
+              for="enterprise_name"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >Enterprise Name</label
+            >
+            <input
+              type="text"
+              name="enterprise_name"
+              id="enterprise_name"
+              formControlName="enterprise_name"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+              required
+            />
+          </div>
+          <div class="col-span-2">
+            <label
+              for="enterprise_description"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >Enterprise Description</label
+            >
+            <input
+              type="text"
+              name="enterprise_description"
+              id="enterprise_description"
+              formControlName="enterprise_description"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+              required
+            />
+          </div>
+          <div class="col-span-2">
+            <label
+              for="website_link"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >Website Link</label
+            >
+            <input
+              type="text"
+              name="website_link"
+              id="website_link"
+              formControlName="website_link"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+              required
+            />
+          </div>
+
+          <div class="col-span-2">
+            <label
+              for="message"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >Brief Message for ProducTry
+              <span class="text-base font-semibold text-red-400">*</span></label
+            >
+            <textarea
+              required
+              id="message"
+              name="message"
+              formControlName="message"
+              [ngClass]="{
+                'error-b':
+                  enterpriseEnquiryForm.get('message')?.hasError('required') &&
+                  enterpriseEnquiryForm.get('message')?.touched
+              }"
+              rows="4"
+              class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-black focus:border-black"
+            ></textarea>
+          </div>
+          <div class="flex items-start col-span-2">
+            <input
+              id="enterprise-enquiry-checkbox"
+              type="checkbox"
+              formControlName="checkbox"
+              class="mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-0 focus:ring-transparent"
+            />
+            <label
+              for="enterprise-enquiry-checkbox"
+              class="cursor-pointer flex items-start ms-2 text-base font-normal text-black"
+              >By clicking the checkbox, you are indicating that you have read,
+              understood, and agreed to our Terms and Conditions and Privacy
+              Policy.
+            </label>
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="w-full text-white flex items-center justify-center bg-black focus:ring-0 focus:outline-none font-medium rounded-lg text-sm p-3 text-center"
+          [class.hidden]="!enterpriseEnquiryForm.controls['checkbox'].value"
+        >
+          Submit Form
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

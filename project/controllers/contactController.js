@@ -38,7 +38,6 @@ exports.addContactDetails = async (req, res) => {
 exports.getAllContactDetails = async (req, res) => {
 
     try {
-        // const contactDetails = req.body;
         const data = await contactService.getAllContactDetails();
         if (data != null) {
             buildResponce(res, 200,

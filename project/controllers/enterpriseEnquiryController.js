@@ -38,7 +38,6 @@ exports.addEnterpriseEnquiryDetails = async (req, res) => {
 exports.getAllEnterpriseEnquiryDetails = async (req, res) => {
 
     try {
-        // const contactDetails = req.body;
         const data = await enterpriseEnquiryService.getAllEnterpriseEnquiryDetails();
         if (data != null) {
             buildResponce(res, 200,
