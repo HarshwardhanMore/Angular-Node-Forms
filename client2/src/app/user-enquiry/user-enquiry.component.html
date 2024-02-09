@@ -17,7 +17,7 @@
                   <h3 class=" text-xl font-semibold text-gray-900 ">
                     User Enquiry Form
                   </h3>
-                  <button id="closeUserEnquiryModel" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " data-modal-toggle="user-enquiry">
+                  <button id="closeUserEnquiryModel" (click)="clearFormValidation()" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center " data-modal-toggle="user-enquiry">
                       <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                       </svg>
@@ -79,11 +79,11 @@
                       <label for="postal_code" class="block mb-2 text-base font-semibold text-gray-900 ">Postal Code</label>
                       <input [ngClass]="{'error-b':userEnquiryForm.get('postal_code')?.hasError('pattern')}" type="number" name="postal_code" formControlName="postal_code" id="postal_code" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                       <div>
-                        <div *ngIf="
+                        <span *ngIf="
                           userEnquiryForm.get('postal_code')?.touched &&
                           userEnquiryForm.get('postal_code')?.hasError('pattern')
                           " class="ml-2 text-red-400 text-xs">Invalid format
-                        </div>
+                        </span>
                       </div>
                     </div>
                     
@@ -91,11 +91,11 @@
                       <label for="email" class="block mb-2 text-base font-semibold text-gray-900 ">Email <span class=" text-base font-semibold text-red-400">*</span></label>
                       <input type="text" [ngClass]="{'error-b':(userEnquiryForm.get('email')?.hasError('required') && userEnquiryForm.get('email')?.touched) || userEnquiryForm.get('email')?.hasError('pattern')}" name="email" id="email" formControlName="email" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                       <div>
-                        <div *ngIf="
+                        <span *ngIf="
                           userEnquiryForm.get('email')?.touched &&
                           userEnquiryForm.get('email')?.hasError('pattern')
                           " class="ml-2 text-red-400 text-xs">Invalid format
-                        </div>
+                        </span>
                       </div>
                   </div>
 
@@ -103,11 +103,11 @@
                       <label for="phone_number" class="block mb-2 text-base font-semibold text-gray-900 ">Phone <span class=" text-base font-semibold text-red-400">*</span></label>
                       <input type="number" name="phone_number" id="phone_number" formControlName="phone_number" [ngClass]="{'error-b':(userEnquiryForm.get('phone_number')?.hasError('required') && userEnquiryForm.get('phone_number')?.touched) || userEnquiryForm.get('phone_number')?.hasError('pattern')}" class=" border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5" required>
                       <div>
-                        <div *ngIf="
+                        <span *ngIf="
                           userEnquiryForm.get('phone_number')?.touched &&
                           userEnquiryForm.get('phone_number')?.hasError('pattern')
                           " class="ml-2 text-red-400 text-xs">Invalid format
-                        </div>
+                        </span>
                       </div>
                     </div> 
                       <!-- <div class="col-span-2">

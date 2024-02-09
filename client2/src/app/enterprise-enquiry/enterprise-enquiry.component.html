@@ -22,6 +22,7 @@
           Enterprise Enquiry Form
         </h3>
         <button
+          (click)="clearFormValidation()"
           id="closeEnterpriseEnquiryModel"
           type="button"
           class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
@@ -232,15 +233,15 @@
               required
             />
             <div>
-              <div
+              <span
                 *ngIf="
                   enterpriseEnquiryForm.get('phone_number')?.touched &&
                   enterpriseEnquiryForm.get('phone_number')?.hasError('pattern')
                 "
                 class="ml-2 text-red-400 text-xs"
               >
-                Invalid format
-              </div>
+                Invalid phone number format
+              </span>
             </div>
           </div>
           <div class="col-span-2">
@@ -269,7 +270,7 @@
               required
             />
             <div>
-              <div
+              <span
                 *ngIf="
                   enterpriseEnquiryForm.get('business_email')?.touched &&
                   enterpriseEnquiryForm
@@ -278,8 +279,8 @@
                 "
                 class="ml-2 text-red-400 text-xs"
               >
-                Invalid format
-              </div>
+                Invalid email format
+              </span>
             </div>
           </div>
           <div class="col-span-2">
@@ -296,6 +297,42 @@
               class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
               required
             />
+          </div>
+          <div class="col-span-2">
+            <label
+              for="gst_number"
+              class="block mb-2 text-base font-semibold text-gray-900"
+              >GST Number</label
+            >
+            <input
+              type="text"
+              name="gst_number"
+              id="gst_number"
+              formControlName="gst_number"
+              class="border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+              required
+              [ngClass]="{
+                'error-b':
+                  (enterpriseEnquiryForm
+                    .get('gst_number')
+                    ?.hasError('required') &&
+                    enterpriseEnquiryForm.get('gst_number')?.touched) ||
+                  enterpriseEnquiryForm
+                    .get('gst_number')
+                    ?.hasError('pattern')
+              }"
+            />
+            <div>
+              <span
+                *ngIf="
+                  enterpriseEnquiryForm.get('gst_number')?.touched &&
+                  enterpriseEnquiryForm.get('gst_number')?.hasError('pattern')
+                "
+                class="ml-1 text-red-400 text-xs"
+              >
+                Invalid GST identification number format
+              </span>
+            </div>
           </div>
           <div class="col-span-2">
             <label
